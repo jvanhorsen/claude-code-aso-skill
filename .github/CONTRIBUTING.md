@@ -16,7 +16,15 @@ Thank you for your interest in contributing! This guide will help you understand
 ### 1. Issue → Branch → PR → Merge
 
 ```mermaid
-Issue (ready label) → Auto-create branch → Work → Push → Auto-create PR → Review → Merge → Auto-close issue + delete branch
+flowchart LR
+    A[Issue with ready label] --> B[Auto-create branch]
+    B --> C[Work & commit changes]
+    C --> D[Push to branch]
+    D --> E[Auto-create PR to dev]
+    E --> F[Code review & checks]
+    F --> G[Merge to dev]
+    G --> H[Auto-close issue]
+    G --> I[Auto-delete branch]
 ```
 
 **Our system automates:**
