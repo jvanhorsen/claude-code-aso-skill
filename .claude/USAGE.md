@@ -10,14 +10,32 @@
 
 ## Installation
 
-### Step 1: Clone the Repository
+### Method A: Plugin Install (Recommended)
+
+The fastest way to install — directly from GitHub:
+
+```bash
+# Add the marketplace
+/plugin marketplace add jvanhorsen/claude-code-aso-skill
+
+# Install the skill
+/plugin install app-store-optimization@aso-skill-marketplace
+```
+
+This installs the skill so Claude can use it for ASO tasks automatically.
+
+### Method B: Clone + Copy (Full Multi-Agent System)
+
+For access to agents, slash commands, and the complete multi-agent system:
+
+#### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/jvanhorsen/claude-code-aso-skill.git
 cd claude-code-aso-skill
 ```
 
-### Step 2: Install Agents
+#### Step 2: Install Agents
 
 ```bash
 cp .claude/agents/aso/*.md ~/.claude/agents/
@@ -25,7 +43,7 @@ cp .claude/agents/aso/*.md ~/.claude/agents/
 
 This copies 7 files: `shared-protocol.md` + 6 agent definitions (`aso-master`, `aso-research`, `aso-metadata`, `aso-creative`, `aso-launch`, `aso-ongoing`).
 
-### Step 3: Install Slash Commands
+#### Step 3: Install Slash Commands
 
 ```bash
 mkdir -p ~/.claude/commands/aso
@@ -34,7 +52,7 @@ cp .claude/commands/aso/*.md ~/.claude/commands/aso/
 
 This installs 4 commands: `/aso-full-audit`, `/aso-optimize`, `/aso-prelaunch`, `/aso-competitor`.
 
-### Step 4: Verify
+#### Step 4: Verify
 
 ```bash
 ls ~/.claude/agents/aso-* ~/.claude/agents/shared-protocol.md
@@ -46,13 +64,13 @@ ls ~/.claude/commands/aso/
 
 Restart Claude Code after installation for agents and commands to appear.
 
-### Optional: Install Standalone Skill
+### Method C: Manual Skill Installation
 
-For direct Python module usage without the agent system:
+For standalone skill usage without the agent system:
 
 ```bash
-mkdir -p ~/.claude/skills
-cp -r app-store-optimization ~/.claude/skills/
+git clone https://github.com/jvanhorsen/claude-code-aso-skill.git
+cp -r claude-code-aso-skill/app-store-optimization ~/.claude/skills/
 ```
 
 ---
@@ -272,6 +290,9 @@ pandoc outputs/MyApp/PLAYBOOK.md -o ASO-Playbook-MyApp.pdf \
 
 ## Updating
 
+**Plugin install:** The plugin system handles updates automatically when the marketplace is refreshed.
+
+**Clone + Copy install:**
 ```bash
 cd claude-code-aso-skill
 git pull
@@ -281,6 +302,12 @@ cp .claude/commands/aso/*.md ~/.claude/commands/aso/
 
 ## Uninstalling
 
+**Plugin install:**
+```bash
+/plugin uninstall app-store-optimization@aso-skill-marketplace
+```
+
+**Clone + Copy install:**
 ```bash
 rm ~/.claude/agents/aso-*.md ~/.claude/agents/shared-protocol.md
 rm -rf ~/.claude/commands/aso/

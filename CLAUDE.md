@@ -9,10 +9,12 @@ A **Claude Code skill + agent system** for App Store Optimization (ASO). Provide
 ## Quick Start
 
 ```bash
-# Install agents (user-level)
-cp .claude/agents/aso/*.md ~/.claude/agents/
+# Plugin install (recommended)
+/plugin marketplace add jvanhorsen/claude-code-aso-skill
+/plugin install app-store-optimization@aso-skill-marketplace
 
-# Install slash commands
+# Or clone + copy for full agent system
+cp .claude/agents/aso/*.md ~/.claude/agents/
 cp .claude/commands/aso/*.md ~/.claude/commands/
 
 # Run a full audit
@@ -28,6 +30,7 @@ app-store-optimization/     # 10 Python modules + lib/ data fetching
 .claude/agents/aso/          # 6 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
 .claude/templates/           # 6 output templates
+.claude-plugin/              # Plugin manifests for owner/repo install
 outputs/[app-name]/          # Generated deliverables (15 files)
 ```
 
@@ -154,6 +157,6 @@ python3 keyword_analyzer.py  # Module syntax check
 |------|---------|
 | `.claude/ARCHITECTURE.md` | System architecture and data flow |
 | `.claude/USAGE.md` | Installation and usage guide |
-| `app-store-optimization/README.md` | Skill documentation |
+| `app-store-optimization/SKILL.md` | Skill definition and documentation |
 | `outputs/FitFlow-example/` | Example output demonstrating quality standards |
 | `CHANGELOG.md` | Version history |

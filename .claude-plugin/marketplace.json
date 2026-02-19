@@ -1,0 +1,16 @@
+{
+  "name": "aso-skill-marketplace",
+  "owner": {
+    "name": "jvanhorsen"
+  },
+  "plugins": [
+    {
+      "name": "app-store-optimization",
+      "description": "Complete ASO toolkit for Apple App Store and Google Play Store — keyword research, metadata generation, competitor analysis, launch planning, and ongoing optimization.",
+      "source": "./",
+      "skills": [
+        "./app-store-optimization"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,18 @@
 ---
 name: app-store-optimization
-description: Complete App Store Optimization (ASO) toolkit for researching, optimizing, and tracking mobile app performance on Apple App Store and Google Play Store
+description: >-
+  Complete App Store Optimization (ASO) toolkit for Apple App Store and Google Play Store.
+  Use when user asks to optimize app store listing, research keywords for a mobile app,
+  analyze app competitors, generate app metadata, plan an app launch, create A/B tests for
+  app store assets, analyze app reviews, plan In-App Events, or create Custom Product Pages.
+  Triggers on: "ASO", "app store optimization", "keyword research for my app",
+  "optimize my app listing", "app store metadata", "competitor analysis for apps",
+  "pre-launch checklist", "app store screenshots", "app review analysis".
+license: MIT
+metadata:
+  author: jvanhorsen
+  version: 1.4.1
+  repository: https://github.com/jvanhorsen/claude-code-aso-skill
 ---
 
 # App Store Optimization (ASO) Skill
@@ -394,7 +406,7 @@ This skill works well with:
 
 ## Version & Updates
 
-This skill is based on current Apple App Store and Google Play Store requirements as of November 2025. Store policies and best practices evolve—verify current requirements before major launches.
+This skill is based on current Apple App Store and Google Play Store requirements as of February 2026. Store policies and best practices evolve—verify current requirements before major launches.
 
 **Key Updates to Monitor:**
 - Apple App Store Connect updates (apple.com/app-store/review/guidelines)

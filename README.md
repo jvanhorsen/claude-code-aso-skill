@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.4.1-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-purple.svg)
 ![Claude App](https://img.shields.io/badge/Claude_App-Compatible-orange.svg)
@@ -97,7 +97,21 @@ outputs/[YourApp]/
 
 ## Installation
 
-### Option 1: Claude Code (Full Multi-Agent System) — Recommended
+### Option 1: Plugin Install (Recommended)
+
+Install directly from GitHub using Claude Code's plugin system:
+
+```bash
+# Add the marketplace
+/plugin marketplace add jvanhorsen/claude-code-aso-skill
+
+# Install the skill
+/plugin install app-store-optimization@aso-skill-marketplace
+```
+
+### Option 2: Clone + Copy (Full Multi-Agent System)
+
+For access to agents, slash commands, and the complete system:
 
 ```bash
 # Clone repository
@@ -116,18 +130,11 @@ ls ~/.claude/agents/aso-*  # 6 agent files
 ls ~/.claude/commands/aso/  # 4 command files
 ```
 
-### Option 2: Claude Desktop/Web App (Standalone Skill)
-
-1. Download `app-store-optimization.zip` from the repository
-2. Open Claude Desktop or Web App settings
-3. Navigate to **Capabilities** and upload the ZIP
-4. Start a conversation referencing the skill
-
-### Option 3: Manual Installation
+### Option 3: Manual Skill Installation
 
 ```bash
-unzip app-store-optimization.zip
-cp -r app-store-optimization ~/.claude/skills/
+git clone https://github.com/jvanhorsen/claude-code-aso-skill.git
+cp -r claude-code-aso-skill/app-store-optimization ~/.claude/skills/
 ```
 
 See [USAGE.md](.claude/USAGE.md) for detailed installation instructions and all workflows.
@@ -263,7 +270,7 @@ MIT License — see [LICENSE.md](LICENSE.md) for details.
 
 ## Status
 
-- **Current Version:** 1.4.0
+- **Current Version:** 1.4.1
 - **Status:** Production Ready
 - **Maintenance:** Actively maintained
 
@@ -288,6 +295,10 @@ MIT License — see [LICENSE.md](LICENSE.md) for details.
 ### Version 1.4 (February 2026)
 - [x] ASO Playbook — presentation-ready consolidated strategy document
 - [x] PDF export support (pandoc, Chrome print, VS Code)
+
+### Version 1.4.1 (February 2026)
+- [x] Plugin system support — install via `owner/repo` syntax
+- [x] SKILL.md compliance with Anthropic skill best practices
 
 ### Future
 - [ ] Paid API integration (AppTweak, Sensor Tower)
