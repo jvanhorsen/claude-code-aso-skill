@@ -14,7 +14,7 @@ All outputs go to `outputs/[app-name]/` relative to the project root.
 Create subdirectories as needed: `01-research/`, `02-metadata/`, `03-testing/`, `04-launch/`, `05-optimization/`.
 Never create files in the project root.
 
-**Expected output structure (13 files per full audit):**
+**Expected output structure (14 files per full audit):**
 - `00-MASTER-ACTION-PLAN.md`, `01-research/keyword-list.md`, `01-research/competitor-gaps.md`
 - `02-metadata/apple-metadata.md`, `02-metadata/google-metadata.md`, `02-metadata/visual-assets-spec.md`, `02-metadata/custom-product-pages.md`
 - `03-testing/ab-test-setup.md`

@@ -51,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Output structure expanded from 11 to 13 files per audit
+- Output structure expanded from 12 to 14 files per audit
   - Added `02-metadata/custom-product-pages.md`
   - Added `05-optimization/event-calendar.md`
 - `aso-optimizer.md` — new CPP section and visual optimization references
@@ -68,7 +68,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 | Category | v1.1 | v1.2 | Change |
 |----------|------|------|--------|
 | Python modules | 8 | 10 | +2 (cpp_planner, event_planner) |
-| Output files per audit | 11 | 13 | +2 (custom-product-pages, event-calendar) |
+| Output files per audit | 12 | 14 | +2 (custom-product-pages, event-calendar) |
 | ASO areas covered | 8 | 13 | +5 (CPPs, events, visual strategy, ads, category/funnel) |
 | Industry coverage | ~60% | ~85% | +25% of 2025-2026 best practices |
 

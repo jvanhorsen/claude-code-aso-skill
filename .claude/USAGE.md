@@ -183,7 +183,7 @@ March 15, 2026."
 
 ## Output Structure
 
-Every `/aso-full-audit` generates 13 files:
+Every `/aso-full-audit` generates 14 files:
 
 ```
 outputs/[app-name]/

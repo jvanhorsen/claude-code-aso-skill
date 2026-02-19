@@ -54,7 +54,7 @@ A production-ready multi-agent ASO system for **Claude Code** that generates **a
 - **Category Strategy** — Primary/secondary category optimization, competition density analysis
 - **Conversion Funnel Analysis** — Stage-by-stage diagnosis, bottleneck identification, benchmark comparison
 
-### Deliverables (13 files per audit)
+### Deliverables (14 files per audit)
 
 ```
 outputs/[YourApp]/
@@ -180,7 +180,7 @@ app-store-optimization/     # 10 Python modules + lib/ data fetching (single sou
 .claude/agents/aso/          # 4 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
 .claude/templates/           # 5 output templates
-outputs/[app-name]/          # Generated deliverables (13 files)
+outputs/[app-name]/          # Generated deliverables (14 files)
 ```
 
 See [ARCHITECTURE.md](.claude/ARCHITECTURE.md) for the full system design and data flow.

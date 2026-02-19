@@ -28,7 +28,7 @@ app-store-optimization/     # 10 Python modules + lib/ data fetching
 .claude/agents/aso/          # 4 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
 .claude/templates/           # 5 output templates
-outputs/[app-name]/          # Generated deliverables (13 files)
+outputs/[app-name]/          # Generated deliverables (14 files)
 ```
 
 See `.claude/ARCHITECTURE.md` for the full data flow diagram and layer breakdown.
@@ -89,7 +89,7 @@ These limits are enforced by agents via shared-protocol.md and validated in meta
 | `/aso-prelaunch [app] [date]` | aso-strategist directly | 8-10 min |
 | `/aso-competitor [app] [competitors]` | aso-research directly | 10-15 min |
 
-## Output Structure (13 files)
+## Output Structure (14 files)
 
 ```
 outputs/[app-name]/
