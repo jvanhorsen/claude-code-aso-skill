@@ -1,6 +1,6 @@
 # App Store Optimization (ASO) Skill
 
-**Version**: 1.2.0
+**Version**: 1.4.0
 
 ## Overview
 
@@ -185,4 +185,4 @@ Complete data source documentation with capabilities and limitations.
 
 ## Agent System
 
-This skill also integrates with a 4-agent orchestration system for comprehensive ASO audits. See the parent repository's `.claude/USAGE.md` for agent installation and slash commands (`/aso-full-audit`, `/aso-optimize`, `/aso-prelaunch`, `/aso-competitor`).
+This skill also integrates with a 6-agent orchestration system for comprehensive ASO audits. See the parent repository's `.claude/USAGE.md` for agent installation and slash commands (`/aso-full-audit`, `/aso-optimize`, `/aso-prelaunch`, `/aso-competitor`).

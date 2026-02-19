@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-purple.svg)
 ![Claude App](https://img.shields.io/badge/Claude_App-Compatible-orange.svg)
@@ -30,14 +30,16 @@ A production-ready multi-agent ASO system for **Claude Code** that generates **a
 
 ### Multi-Agent System
 
-4 specialized agents coordinated sequentially:
+6 specialized agents coordinated sequentially:
 
 | Agent | Role | Model |
 |-------|------|-------|
-| **aso-master** | Orchestrator — intake, coordination, synthesis | Opus |
+| **aso-master** | Orchestrator — intake, coordination, heartbeat, synthesis | Opus |
 | **aso-research** | Keyword + competitor research via iTunes API | Opus |
-| **aso-optimizer** | Metadata generation with character validation | Sonnet |
-| **aso-strategist** | Timelines, checklists, review templates | Opus |
+| **aso-metadata** | Apple + Google metadata generation with validation | Sonnet |
+| **aso-creative** | Visual assets, CPPs, A/B testing strategy | Sonnet |
+| **aso-launch** | Pre-launch checklist + launch timeline | Opus |
+| **aso-ongoing** | Review templates, event calendar, ongoing tasks | Opus |
 
 ### Data Integration
 
@@ -45,16 +47,18 @@ A production-ready multi-agent ASO system for **Claude Code** that generates **a
 - **WebFetch Utilities** — Additional scraping for comprehensive analysis
 - **Character Validation** — Apple (30/30/170/100/4000) and Google (50/80/4000) limits enforced
 
-### v1.2 Enhancements
+### Key Capabilities
 
-- **Custom Product Pages (CPPs)** — Strategy, promotional text variants, priority scoring (5.9% avg CVR lift)
+- **Custom Product Pages (CPPs)** — Strategy, promotional text variants, priority scoring
 - **In-App Events** — Seasonal calendar, event metadata generation, badge type recommendations
-- **Visual Asset Optimization** — Screenshot strategy framework, first-3-screenshot CVR optimization, text overlay guidelines
-- **Apple Search Ads Readiness** — Organic vs paid keyword strategy, CPP+Ads integration, budget framework
+- **Visual Asset Optimization** — Screenshot strategy framework, first-3-screenshot CVR optimization
+- **Apple Search Ads Readiness** — Organic vs paid keyword strategy, CPP+Ads integration
 - **Category Strategy** — Primary/secondary category optimization, competition density analysis
-- **Conversion Funnel Analysis** — Stage-by-stage diagnosis, bottleneck identification, benchmark comparison
+- **Conversion Funnel Analysis** — Stage-by-stage diagnosis, bottleneck identification
+- **ASO Playbook** — Presentation-ready strategy document, exportable to PDF
+- **Progress Heartbeat** — Real-time progress updates during long-running audits
 
-### Deliverables (14 files per audit)
+### Deliverables (15 files per audit)
 
 ```
 outputs/[YourApp]/
@@ -76,17 +80,18 @@ outputs/[YourApp]/
 │   ├── review-responses.md       # Pre-written response templates
 │   ├── ongoing-tasks.md          # Daily/weekly/monthly schedule
 │   └── event-calendar.md         # In-App Events strategy and calendar
-└── FINAL-REPORT.md               # Executive summary
+├── FINAL-REPORT.md               # Executive summary
+└── PLAYBOOK.md                   # Presentation-ready ASO strategy (PDF-exportable)
 ```
 
 ### Slash Commands
 
 | Command | Agent | Time |
 |---------|-------|------|
-| `/aso-full-audit [app]` | aso-master (all specialists) | 30-40 min |
-| `/aso-optimize [app]` | aso-optimizer directly | 5-7 min |
-| `/aso-prelaunch [app] [date]` | aso-strategist directly | 8-10 min |
-| `/aso-competitor [app] [competitors]` | aso-research directly | 10-15 min |
+| `/aso-full-audit [app]` | aso-master (all 5 specialists) | 30-40 min |
+| `/aso-optimize [app]` | aso-metadata | 3-5 min |
+| `/aso-prelaunch [app] [date]` | aso-launch + aso-ongoing | 10-14 min |
+| `/aso-competitor [app] [competitors]` | aso-research | 10-15 min |
 
 ---
 
@@ -96,17 +101,19 @@ outputs/[YourApp]/
 
 ```bash
 # Clone repository
-git clone https://github.com/alirezarezvani/claude-code-aso-skill.git
+git clone https://github.com/jvanhorsen/claude-code-aso-skill.git
 cd claude-code-aso-skill
 
-# Install agents (user-level)
+# Install agents (user-level — copies 7 files: shared protocol + 6 agents)
 cp .claude/agents/aso/*.md ~/.claude/agents/
 
-# Install slash commands (optional)
-cp .claude/commands/aso/*.md ~/.claude/commands/
+# Install slash commands
+mkdir -p ~/.claude/commands/aso
+cp .claude/commands/aso/*.md ~/.claude/commands/aso/
 
-# Verify installation
-claude --list-agents | grep aso
+# Restart Claude Code, then verify
+ls ~/.claude/agents/aso-*  # 6 agent files
+ls ~/.claude/commands/aso/  # 4 command files
 ```
 
 ### Option 2: Claude Desktop/Web App (Standalone Skill)
@@ -177,10 +184,10 @@ See the complete example for a fictional fitness app: **[FitFlow Example](output
 
 ```
 app-store-optimization/     # 10 Python modules + lib/ data fetching (single source of truth)
-.claude/agents/aso/          # 4 agent definitions + shared protocol
+.claude/agents/aso/          # 6 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
-.claude/templates/           # 5 output templates
-outputs/[app-name]/          # Generated deliverables (14 files)
+.claude/templates/           # 6 output templates
+outputs/[app-name]/          # Generated deliverables (15 files)
 ```
 
 See [ARCHITECTURE.md](.claude/ARCHITECTURE.md) for the full system design and data flow.
@@ -250,13 +257,13 @@ MIT License — see [LICENSE.md](LICENSE.md) for details.
 
 - **Documentation:** [USAGE.md](.claude/USAGE.md)
 - **Examples:** [FitFlow example](outputs/FitFlow-example/)
-- **Issues:** [GitHub Issues](https://github.com/alirezarezvani/claude-code-aso-skill/issues)
+- **Issues:** [GitHub Issues](https://github.com/jvanhorsen/claude-code-aso-skill/issues)
 
 ---
 
 ## Status
 
-- **Current Version:** 1.2.0
+- **Current Version:** 1.4.0
 - **Status:** Production Ready
 - **Maintenance:** Actively maintained
 
@@ -266,23 +273,25 @@ MIT License — see [LICENSE.md](LICENSE.md) for details.
 - [x] Multi-agent system with orchestration
 - [x] iTunes API integration
 - [x] Copy-paste ready metadata
-- [x] Complete documentation and example workflow
 
 ### Version 1.1 (February 2026)
-- [x] Architecture restructure — eliminated duplicates, principle-based agents, simplified outputs
+- [x] Architecture restructure — principle-based agents, simplified outputs
 
 ### Version 1.2 (February 2026)
-- [x] Custom Product Pages (CPPs) — strategy module with opportunity identification and spec generation
-- [x] In-App Events — seasonal event calendar and metadata generation
-- [x] Visual asset optimization — screenshot strategy framework with CVR-focused first-3-screenshot guidance
-- [x] Apple Search Ads readiness — organic vs paid keyword strategy and budget framework
-- [x] Category strategy — primary/secondary category optimization and competition density analysis
-- [x] Conversion funnel analysis — stage-by-stage diagnosis with bottleneck identification
+- [x] Custom Product Pages, In-App Events, visual asset optimization
+- [x] Apple Search Ads readiness, category strategy, conversion funnel analysis
 
-### Version 2.0 (Future)
+### Version 1.3 (February 2026)
+- [x] Split overloaded agents (4 → 6 specialists) for reliability
+- [x] Progress heartbeat system with real-time status updates
+
+### Version 1.4 (February 2026)
+- [x] ASO Playbook — presentation-ready consolidated strategy document
+- [x] PDF export support (pandoc, Chrome print, VS Code)
+
+### Future
 - [ ] Paid API integration (AppTweak, Sensor Tower)
 - [ ] Semantic keyword clustering
-- [ ] Web dashboard for tracking
 - [ ] Multi-language expansion support
 
 ---

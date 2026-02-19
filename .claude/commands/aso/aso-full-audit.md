@@ -5,7 +5,7 @@ description: Complete ASO audit with keyword research, competitor intelligence, 
 
 # ASO Full Audit
 
-Run a comprehensive App Store Optimization audit producing 14 actionable deliverables.
+Run a comprehensive App Store Optimization audit producing 15 actionable deliverables.
 
 ## Agent
 
@@ -36,7 +36,7 @@ aso-master will ask for:
 
 ## Output
 
-`outputs/[app-name]/` — 14 files across 5 phase folders. Start with `00-MASTER-ACTION-PLAN.md`.
+`outputs/[app-name]/` — 15 files across 5 phase folders plus master plan, final report, and playbook. Start with `PLAYBOOK.md` for strategy overview or `00-MASTER-ACTION-PLAN.md` for detailed task checklist.
 
 ## Time
 
