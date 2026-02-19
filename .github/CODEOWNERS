@@ -13,7 +13,7 @@
 # ASO Agents
 /.claude/agents/aso/*.md @alirezarezvani
 /.claude/commands/aso/*.md @alirezarezvani
-/.claude/skills/aso/ @alirezarezvani
+
 
 # GitHub Workflows (Critical)
 /.github/workflows/ @alirezarezvani

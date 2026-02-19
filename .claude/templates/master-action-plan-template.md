@@ -35,15 +35,24 @@
 
 **Location:** `outputs/{{APP_NAME}}/01-research/`
 
+#### Keyword Research
 - [ ] Review keyword list and validate priority keywords
-- [ ] Analyze competitor gaps and identify opportunities
-- [ ] Complete research action checklist
-{{RESEARCH_CUSTOM_TASKS}}
+- [ ] Validate top 10 keyword search volumes via Apple Search Ads (free account)
+- [ ] Research long-tail keyword opportunities (3-4 word phrases)
+- [ ] Confirm keyword-to-field mapping (which keywords go in title vs subtitle vs description vs keyword field)
+- [ ] Identify seasonal or trending keyword opportunities
+{{RESEARCH_KEYWORD_TASKS}}
+
+#### Competitor Analysis
+- [ ] Analyze competitor gaps and identify positioning opportunities
+- [ ] Document competitor title strategies and keyword usage
+- [ ] Identify keywords with low competitor density and high relevance
+- [ ] Note competitor weaknesses to exploit in metadata
+{{RESEARCH_COMPETITOR_TASKS}}
 
 **Deliverables:**
-- ✅ keyword-list.md
-- ✅ competitor-gaps.md
-- ✅ action-research.md
+- `keyword-list.md` — prioritized keywords with implementation locations
+- `competitor-gaps.md` — opportunities competitors miss
 
 ---
 
@@ -51,18 +60,36 @@
 
 **Location:** `outputs/{{APP_NAME}}/02-metadata/`
 
-- [ ] Copy Apple metadata to App Store Connect
-- [ ] Copy Google metadata to Play Console
-- [ ] Brief designer on visual assets specifications
+#### Pre-Implementation
+- [ ] Review generated metadata and ensure messaging aligns with brand voice
+- [ ] Verify all character counts meet platform limits
+- [ ] Confirm keywords are naturally integrated (not stuffed)
+
+#### Apple App Store (if applicable)
+- [ ] Copy title to App Store Connect ({{APPLE_TITLE_LENGTH}}/30 chars)
+- [ ] Copy subtitle ({{APPLE_SUBTITLE_LENGTH}}/30 chars)
+- [ ] Copy keyword field ({{APPLE_KEYWORDS_LENGTH}}/100 chars, no spaces after commas)
+- [ ] Copy description ({{APPLE_DESC_LENGTH}}/4,000 chars)
+- [ ] Update promotional text (can be changed without submission)
+- [ ] Select A/B test variant for title (if testing)
+
+#### Google Play Store (if applicable)
+- [ ] Copy title to Play Console ({{GOOGLE_TITLE_LENGTH}}/50 chars)
+- [ ] Copy short description ({{GOOGLE_SHORT_LENGTH}}/80 chars)
+- [ ] Copy full description ({{GOOGLE_DESC_LENGTH}}/4,000 chars)
+- [ ] Verify keywords appear naturally in first 300 characters
+
+#### Visual Assets
+- [ ] Brief designer on icon requirements (1024x1024px)
+- [ ] Brief designer on screenshot specifications (per platform)
 - [ ] Review and approve visual mockups
-- [ ] Complete metadata action checklist
+- [ ] Prepare feature graphic for Google Play (1024x500px)
 {{METADATA_CUSTOM_TASKS}}
 
 **Deliverables:**
-- ✅ apple-metadata.md (copy-paste ready)
-- ✅ google-metadata.md (copy-paste ready)
-- ✅ visual-assets-spec.md
-- ✅ action-metadata.md
+- `apple-metadata.md` — copy-paste ready for App Store Connect
+- `google-metadata.md` — copy-paste ready for Play Console
+- `visual-assets-spec.md` — icon/screenshot requirements
 
 ---
 
@@ -70,16 +97,21 @@
 
 **Location:** `outputs/{{APP_NAME}}/03-testing/`
 
-- [ ] Configure A/B tests in App Store Connect
-- [ ] Configure A/B tests in Play Console
-- [ ] Set calendar reminders for test check-ins
-- [ ] Document baseline metrics
-- [ ] Complete testing action checklist
+#### Baseline
+- [ ] Document current conversion rate: {{BASELINE_CVR}}%
+- [ ] Document current impressions and installs
+- [ ] Identify highest-impact test element (icon > first screenshot > title > description)
+
+#### Test Configuration
+- [ ] Configure first A/B test in App Store Connect / Play Console
+- [ ] Set traffic allocation (recommended: 50/50 or 33/33/33)
+- [ ] Set minimum test duration (7 days minimum, 14 recommended)
+- [ ] Define success metric and significance threshold (95%)
+- [ ] Set calendar reminders for test check-ins (day 3, 7, 14)
 {{TESTING_CUSTOM_TASKS}}
 
 **Deliverables:**
-- ✅ ab-test-setup.md
-- ✅ action-testing.md
+- `ab-test-setup.md` — step-by-step test configuration with hypotheses
 
 ---
 
@@ -87,18 +119,28 @@
 
 **Location:** `outputs/{{APP_NAME}}/04-launch/`
 
-- [ ] Complete all 47 pre-launch checklist items
-- [ ] Submit to App Store (allow 24-48 hours for review)
-- [ ] Submit to Play Store (allow 2-7 days for review)
-- [ ] Prepare launch marketing materials
-- [ ] Complete launch action checklist
+#### Pre-Launch Validation
+- [ ] Complete all items in prelaunch-checklist.md (7 phases: metadata, visuals, technical, legal, business, marketing, ASO)
+- [ ] Verify privacy policy is published and accessible
+- [ ] Confirm age/content ratings are complete
+- [ ] Verify Apple encryption/export compliance declarations
+- [ ] Complete Google data safety section
+
+#### App Store Submission
+- [ ] Submit to Apple App Store (allow 1-3 days for review)
+- [ ] Submit to Google Play Store (allow 2-7 days for initial review)
+- [ ] Prepare for common rejection reasons and fixes
+- [ ] Have contingency plan for review delays
+
+#### Launch Marketing
+- [ ] Prepare launch announcement (social media, website, press)
+- [ ] Set up support system (help email, FAQ, knowledge base)
+- [ ] Verify analytics integration (App Store Connect + Play Console)
 {{LAUNCH_CUSTOM_TASKS}}
 
 **Deliverables:**
-- ✅ prelaunch-checklist.md (47 items)
-- ✅ timeline.md (specific dates)
-- ✅ submission-guide.md
-- ✅ action-launch.md
+- `prelaunch-checklist.md` — comprehensive validation checklist
+- `timeline.md` — week-by-week with specific calendar dates
 
 ---
 
@@ -106,17 +148,23 @@
 
 **Location:** `outputs/{{APP_NAME}}/05-optimization/`
 
-- [ ] Set up monitoring dashboard
-- [ ] Create review response workflow
-- [ ] Schedule weekly ASO check-ins
-- [ ] Track keyword ranking changes
-- [ ] Complete optimization action checklist
+#### Setup
+- [ ] Set up keyword ranking monitoring
+- [ ] Create review response workflow using templates
+- [ ] Configure notification alerts for new reviews and ratings drops
+- [ ] Schedule recurring ASO check-ins (see cadence below)
+
+#### Ongoing Cadence
+- **Daily (15 min):** Check new reviews, respond to critical issues, monitor crash reports
+- **Weekly (1 hour):** Keyword ranking check, conversion rate trends, competitor monitoring
+- **Bi-Weekly (2 hours):** A/B test analysis, promotional text refresh (Apple)
+- **Monthly (2-3 hours):** ASO health score (run `aso_scorer.py`), competitor analysis, review sentiment report
+- **Quarterly (4-6 hours):** Full keyword research refresh, localization ROI analysis, major metadata update if needed
 {{OPTIMIZATION_CUSTOM_TASKS}}
 
 **Deliverables:**
-- ✅ review-responses.md (templates)
-- ✅ ongoing-tasks.md (schedule)
-- ✅ action-optimization.md
+- `review-responses.md` — templates for common review scenarios
+- `ongoing-tasks.md` — detailed daily/weekly/monthly schedule
 
 ---
 
@@ -198,11 +246,11 @@
 ## Quality Validation
 
 All deliverables have been validated for:
-- ✅ Character count compliance (Apple/Google limits)
-- ✅ Keyword density optimization
-- ✅ Real calendar dates (no placeholders)
-- ✅ Actionable tasks with success criteria
-- ✅ Copy-paste ready content
+- Character count compliance (Apple/Google limits)
+- Keyword density optimization
+- Real calendar dates (no placeholders)
+- Actionable tasks with success criteria
+- Copy-paste ready content
 
 ---
 
@@ -228,7 +276,7 @@ All deliverables have been validated for:
 ## Support
 
 - **Questions about research:** Review `01-research/keyword-list.md`
-- **Questions about metadata:** Review `02-metadata/action-metadata.md`
+- **Questions about metadata:** Review `02-metadata/apple-metadata.md` or `google-metadata.md`
 - **Questions about testing:** Review `03-testing/ab-test-setup.md`
 - **Questions about launch:** Review `04-launch/prelaunch-checklist.md`
 - **Questions about optimization:** Review `05-optimization/ongoing-tasks.md`
@@ -240,15 +288,5 @@ All deliverables have been validated for:
 **Confidence Level:** {{CONFIDENCE_LEVEL}}
 
 ---
-
-## Agent Quality Self-Assessment
-
-✅ All character limits validated
-✅ All dates are specific (no placeholders)
-✅ All tasks are actionable with clear success criteria
-✅ All metadata is copy-paste ready
-✅ All checklists include validation methods
-✅ All competitor data is from real sources
-✅ All recommendations are data-backed
 
 **Agent Notes:** {{AGENT_NOTES}}

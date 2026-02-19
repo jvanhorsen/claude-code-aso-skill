@@ -1,9 +1,11 @@
 # ASO Multi-Agent System Implementation Plan
 
+> **ARCHIVED** — This document describes the original implementation plan from November 2025. The agent system has been restructured (February 2026). For current architecture, see `.claude/ARCHITECTURE.md`. For current agent definitions, see `.claude/agents/aso/`.
+
 **Project:** ASO (App Store Optimization) Multi-Agent System
 **Version:** 1.0
 **Date:** November 7, 2025
-**Status:** ✅ COMPLETE
+**Status:** ✅ COMPLETE (archived)
 
 ---
 

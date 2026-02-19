@@ -22,7 +22,7 @@ body:
         - API documentation (function docstrings)
         - Installation guide
         - Usage examples
-        - HOW_TO_USE.md
+        - README.md (skill)
         - CHANGELOG.md
         - Code comments
         - Error messages
