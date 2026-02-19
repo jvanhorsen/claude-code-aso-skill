@@ -6,7 +6,7 @@ All ASO agents follow this protocol. Agent-specific instructions override when c
 
 | Agent | Role | Model | Files | Color |
 |-------|------|-------|-------|-------|
-| `aso-master` | Orchestrator — intake, coordination, heartbeat, synthesis | opus | 2 (master plan + final report) | purple |
+| `aso-master` | Orchestrator — intake, coordination, heartbeat, synthesis | opus | 3 (master plan + final report + playbook) | purple |
 | `aso-research` | Keyword + competitor research via iTunes API | opus | 2 (keyword-list, competitor-gaps) | blue |
 | `aso-metadata` | Apple + Google metadata generation with validation | sonnet | 2 (apple-metadata, google-metadata) | green |
 | `aso-creative` | Visual assets, CPPs, A/B testing strategy | sonnet | 3 (visual-assets-spec, custom-product-pages, ab-test-setup) | cyan |
@@ -27,13 +27,14 @@ All outputs go to `outputs/[app-name]/` relative to the project root.
 Create subdirectories as needed: `01-research/`, `02-metadata/`, `03-testing/`, `04-launch/`, `05-optimization/`.
 Never create files in the project root.
 
-**Expected output structure (14 files per full audit):**
+**Expected output structure (15 files per full audit):**
 - `00-MASTER-ACTION-PLAN.md`, `01-research/keyword-list.md`, `01-research/competitor-gaps.md`
 - `02-metadata/apple-metadata.md`, `02-metadata/google-metadata.md`, `02-metadata/visual-assets-spec.md`, `02-metadata/custom-product-pages.md`
 - `03-testing/ab-test-setup.md`
 - `04-launch/prelaunch-checklist.md`, `04-launch/timeline.md`
 - `05-optimization/review-responses.md`, `05-optimization/ongoing-tasks.md`, `05-optimization/event-calendar.md`
 - `FINAL-REPORT.md`
+- `PLAYBOOK.md` — presentation-ready ASO playbook (exportable to PDF)
 
 **File ownership by agent:**
 | Agent | Output Files |
@@ -43,7 +44,7 @@ Never create files in the project root.
 | aso-creative | `02-metadata/visual-assets-spec.md`, `02-metadata/custom-product-pages.md`, `03-testing/ab-test-setup.md` |
 | aso-launch | `04-launch/prelaunch-checklist.md`, `04-launch/timeline.md` |
 | aso-ongoing | `05-optimization/review-responses.md`, `05-optimization/event-calendar.md`, `05-optimization/ongoing-tasks.md` |
-| aso-master | `00-MASTER-ACTION-PLAN.md`, `FINAL-REPORT.md` |
+| aso-master | `00-MASTER-ACTION-PLAN.md`, `FINAL-REPORT.md`, `PLAYBOOK.md` |
 
 ## Heartbeat Protocol
 
@@ -54,7 +55,7 @@ The orchestrator (aso-master) prints a structured progress update after each spe
 ═══════════════════════════════════════════════════════════
   ASO AUDIT PROGRESS — [App Name]
   Phase [N]/5 complete [█░ progress bar] [percent]%
-  Files: [completed]/14 complete
+  Files: [completed]/15 complete
 ═══════════════════════════════════════════════════════════
   [status] Phase 1 — Research (2 files)
      • [file details with key insight]

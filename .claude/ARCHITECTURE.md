@@ -91,8 +91,8 @@ Phase 5: aso-ongoing (3 files)
     - Output: review-responses.md, event-calendar.md, ongoing-tasks.md
     ↓ heartbeat
 aso-master (synthesis)
-    - Output: 00-MASTER-ACTION-PLAN.md, FINAL-REPORT.md
-    ↓ final heartbeat (14/14 files complete)
+    - Output: 00-MASTER-ACTION-PLAN.md, FINAL-REPORT.md, PLAYBOOK.md
+    ↓ final heartbeat (15/15 files complete)
 ```
 
 ---
@@ -142,7 +142,8 @@ outputs/[app-name]/
 │   ├── review-responses.md
 │   ├── ongoing-tasks.md
 │   └── event-calendar.md
-└── FINAL-REPORT.md
+├── FINAL-REPORT.md
+└── PLAYBOOK.md
 ```
 
 ---
@@ -173,14 +174,14 @@ outputs/[app-name]/
 │ aso_scorer.py → category analysis              │
 │ → outputs/[app]/01-research/                   │
 └────────┬───────────────────────────────────────┘
-         ↓ heartbeat (2/14 files)
+         ↓ heartbeat (2/15 files)
 ┌────────────────────────────────────────────────┐
 │ Phase 2: aso-metadata (2 files)                │
 │ Keywords from Phase 1 → metadata_optimizer.py  │
 │ → outputs/[app]/02-metadata/                   │
 │   (apple-metadata.md, google-metadata.md)      │
 └────────┬───────────────────────────────────────┘
-         ↓ heartbeat (4/14 files)
+         ↓ heartbeat (4/15 files)
 ┌────────────────────────────────────────────────┐
 │ Phase 3: aso-creative (3 files)                │
 │ metadata_optimizer.py → screenshot strategy    │
@@ -189,14 +190,14 @@ outputs/[app-name]/
 │ → outputs/[app]/02-metadata/ (visuals, CPPs)   │
 │ → outputs/[app]/03-testing/ (A/B tests)        │
 └────────┬───────────────────────────────────────┘
-         ↓ heartbeat (7/14 files)
+         ↓ heartbeat (7/15 files)
 ┌────────────────────────────────────────────────┐
 │ Phase 4: aso-launch (2 files)                  │
 │ All prior outputs → launch_checklist.py        │
 │ aso_scorer.py → conversion funnel analysis     │
 │ → outputs/[app]/04-launch/                     │
 └────────┬───────────────────────────────────────┘
-         ↓ heartbeat (9/14 files)
+         ↓ heartbeat (9/15 files)
 ┌────────────────────────────────────────────────┐
 │ Phase 5: aso-ongoing (3 files)                 │
 │ event_planner.py → In-App Events calendar      │
@@ -204,13 +205,14 @@ outputs/[app-name]/
 │ aso_scorer.py → ongoing schedule               │
 │ → outputs/[app]/05-optimization/               │
 └────────┬───────────────────────────────────────┘
-         ↓ heartbeat (12/14 files)
+         ↓ heartbeat (12/15 files)
 ┌────────────────────────────────────────────────┐
 │ aso-master (Synthesis)                         │
 │ → outputs/[app]/00-MASTER-ACTION-PLAN.md       │
 │ → outputs/[app]/FINAL-REPORT.md                │
+│ → outputs/[app]/PLAYBOOK.md                    │
 └────────────────────────────────────────────────┘
-  ↓ final heartbeat (14/14 files ████████████████)
+  ↓ final heartbeat (15/15 files ████████████████)
 ```
 
 ---

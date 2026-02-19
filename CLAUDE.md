@@ -27,8 +27,8 @@ Single source of truth: `app-store-optimization/` (distributable skill package).
 app-store-optimization/     # 10 Python modules + lib/ data fetching
 .claude/agents/aso/          # 6 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
-.claude/templates/           # 5 output templates
-outputs/[app-name]/          # Generated deliverables (14 files)
+.claude/templates/           # 6 output templates
+outputs/[app-name]/          # Generated deliverables (15 files)
 ```
 
 See `.claude/ARCHITECTURE.md` for the full data flow diagram and layer breakdown.
@@ -71,7 +71,7 @@ These limits are enforced by agents via shared-protocol.md and validated in meta
 
 | Agent | Role | Model | Files |
 |-------|------|-------|-------|
-| `aso-master` | Orchestrator — intake, coordination, heartbeat, synthesis | opus | 2 |
+| `aso-master` | Orchestrator — intake, coordination, heartbeat, synthesis | opus | 3 |
 | `aso-research` | Keyword + competitor research via iTunes API | opus | 2 |
 | `aso-metadata` | Copy-paste Apple + Google metadata with validation | sonnet | 2 |
 | `aso-creative` | Visual assets, Custom Product Pages, A/B testing | sonnet | 3 |
@@ -93,7 +93,7 @@ These limits are enforced by agents via shared-protocol.md and validated in meta
 | `/aso-prelaunch [app] [date]` | aso-launch + aso-ongoing | 10-14 min |
 | `/aso-competitor [app] [competitors]` | aso-research directly | 10-15 min |
 
-## Output Structure (14 files)
+## Output Structure (15 files)
 
 ```
 outputs/[app-name]/
@@ -115,18 +115,20 @@ outputs/[app-name]/
 │   ├── review-responses.md
 │   ├── ongoing-tasks.md
 │   └── event-calendar.md
-└── FINAL-REPORT.md
+├── FINAL-REPORT.md
+└── PLAYBOOK.md                  # Presentation-ready ASO playbook (PDF-exportable)
 ```
 
 ## Templates
 
-`.claude/templates/` contains 5 output structure templates referenced by agents:
+`.claude/templates/` contains 6 output structure templates referenced by agents:
 
 - `master-action-plan-template.md` — master checklist with per-phase tasks
 - `apple-metadata-template.md` — App Store Connect metadata format
 - `google-metadata-template.md` — Play Console metadata format
 - `timeline-template.md` — Week-by-week timeline with real dates
 - `review-responses-template.md` — Review response categories and templates
+- `playbook-template.md` — Presentation-ready ASO playbook (PDF-exportable via pandoc or Chrome print)
 
 ## Development Guidelines
 

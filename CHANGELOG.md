@@ -7,6 +7,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.4.0] - 2026-02-19
+
+### Added
+
+#### ASO Playbook (PDF-Exportable Strategy Document)
+
+Full audits now generate a 15th output file: `PLAYBOOK.md` — a presentation-ready ASO strategy document that consolidates highlights from all deliverables into a single narrative document suitable for PDF export.
+
+**Structure:**
+- Cover page with app name, date, platforms, ASO health score
+- Executive summary with 90-day metric targets
+- Market research insights (keyword landscape, competitive positioning, category analysis)
+- Metadata strategy (Apple + Google with character limit compliance table)
+- Visual & creative strategy (screenshot sequence, CPPs, icon/video)
+- Testing roadmap (A/B test priority matrix with expected impact)
+- Launch plan (milestones table, risk mitigation)
+- Ongoing optimization (review management, In-App Events calendar, maintenance cadence)
+- Success metrics dashboard (30/60/90-day targets, KPI measurement methods)
+- Appendix with links to all 14 specialist deliverable files
+- PDF export instructions (pandoc, Chrome print, VS Code extension)
+
+**New template:** `.claude/templates/playbook-template.md` — narrative-driven structure designed for clean PDF rendering (tables, horizontal rules, professional tone).
+
+**Zero dependency maintained:** PDF export happens user-side via `pandoc`, Chrome print, or VS Code Markdown PDF extension. No new Python dependencies.
+
+### Changed
+
+- `aso-master.md` — synthesis phase now produces 3 files (was 2): master plan, final report, playbook
+- `shared-protocol.md` — output structure updated to 15 files (was 14), file ownership updated
+- Heartbeat progress counts updated to `/15` throughout all agent definitions
+
+### Net Impact
+
+| Category | v1.3 | v1.4 | Change |
+|----------|------|------|--------|
+| Output files per audit | 14 | 15 | +1 (PLAYBOOK.md) |
+| Templates | 5 | 6 | +1 (playbook-template.md) |
+| aso-master output files | 2 | 3 | +1 |
+| Agent definitions | 6 | 6 | unchanged |
+| External dependencies | 0 | 0 | unchanged |
+
+---
+
 ## [1.3.0] - 2026-02-19
 
 ### Changed

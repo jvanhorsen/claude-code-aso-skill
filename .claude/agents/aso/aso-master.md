@@ -127,7 +127,7 @@ After each agent completes, print a structured progress update so the user can s
 ═══════════════════════════════════════════════════════════
   ASO AUDIT PROGRESS — [App Name]
   Phase [N]/5 complete [progress bar] [percent]%
-  Files: [completed]/14 complete
+  Files: [completed]/15 complete
 ═══════════════════════════════════════════════════════════
   ✅ Phase 1 — Research (2 files)
      • keyword-list.md — [N] primary keywords identified
@@ -157,7 +157,7 @@ After each agent completes, print a structured progress update so the user can s
 
 ## 4. Synthesis
 
-After all five agents complete, create two files:
+After all five agents complete, create three files:
 
 **`00-MASTER-ACTION-PLAN.md`** — Use the template at `.claude/templates/master-action-plan-template.md`. Fill in:
 - Phase-by-phase tasks consolidated from all agent outputs
@@ -173,12 +173,19 @@ After all five agents complete, create two files:
 - Expected impact estimates
 - Prioritized next steps
 
-**→ Print final heartbeat showing all 14 files complete**
+**`PLAYBOOK.md`** — Presentation-ready ASO playbook using the template at `.claude/templates/playbook-template.md`. This is a narrative-driven strategy document designed for PDF export:
+- Read each specialist output and extract key data points (top keywords, final titles, competitor gaps, test hypotheses, milestones, event dates)
+- Fill all template placeholders with actual values — no `{{PLACEHOLDER}}` text should remain
+- Use a professional, narrative tone (this reads like a strategy deck, not a task checklist)
+- Ensure tables render cleanly (they must look good when exported to PDF)
+- Include the PDF export instructions section at the end
+
+**→ Print final heartbeat showing all 15 files complete**
 
 ## 5. Scope Adaptation
 
 Not every request needs all five agents:
-- **Full audit (`/aso-full-audit`):** All 5 agents → full 14-file output structure
+- **Full audit (`/aso-full-audit`):** All 5 agents → full 15-file output structure (includes PLAYBOOK.md)
 - **Metadata-only (`/aso-optimize`):** aso-metadata only → 2 files in `02-metadata/`
 - **Pre-launch (`/aso-prelaunch`):** aso-launch + aso-ongoing → 5 files in `04-launch/` + `05-optimization/`
 - **Competitor analysis (`/aso-competitor`):** aso-research only → 2 files in `01-research/`
