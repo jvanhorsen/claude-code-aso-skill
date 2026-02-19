@@ -237,6 +237,30 @@
 
 ---
 
+## Apple Search Ads Readiness
+
+### Keyword Strategy: Organic vs Paid
+
+| Keyword | Strategy | Rationale | Est. CPT |
+|---------|----------|-----------|----------|
+{{SEARCH_ADS_KEYWORD_TABLE}}
+
+### Budget Recommendation
+
+| Phase | Monthly Budget | Focus |
+|-------|---------------|-------|
+| Month 1 | {{ADS_BUDGET_M1}} | Discovery campaigns, broad match |
+| Month 2-3 | {{ADS_BUDGET_M2}} | Exact match on priority keywords |
+| Month 4+ | {{ADS_BUDGET_M4}} | Full funnel with CPP targeting |
+
+### CPP + Search Ads Integration
+
+{{CPP_ADS_MAPPING}}
+
+**Note:** Even without running ads, create a free Apple Search Ads account for keyword insights (Search Popularity scores).
+
+---
+
 ## Risk Mitigation
 
 {{RISKS_AND_MITIGATION}}

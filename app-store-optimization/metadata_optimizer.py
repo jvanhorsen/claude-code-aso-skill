@@ -545,6 +545,371 @@ class MetadataOptimizer:
         # Fallback to first option
         return f"Recommended: '{options[0]['title']}' ({options[0]['strategy']})"
 
+    # -------------------------------------------------------------------------
+    # Visual Asset Optimization
+    # -------------------------------------------------------------------------
+
+    # Screenshot specifications by platform and device
+    SCREENSHOT_SPECS = {
+        'apple': {
+            'iphone_6_7': {'size': '1290x2796', 'label': 'iPhone 6.7"', 'required': True},
+            'iphone_6_5': {'size': '1284x2778', 'label': 'iPhone 6.5"', 'required': False},
+            'iphone_5_5': {'size': '1242x2208', 'label': 'iPhone 5.5"', 'required': False},
+            'ipad_pro_12_9': {'size': '2048x2732', 'label': 'iPad Pro 12.9"', 'required': False},
+            'min_screenshots': 3,
+            'max_screenshots': 10,
+            'recommended_screenshots': 8,
+        },
+        'google': {
+            'phone': {'size': '1080x1920 (min)', 'label': 'Phone', 'required': True},
+            'tablet_7': {'size': '1080x1920', 'label': '7" Tablet', 'required': False},
+            'tablet_10': {'size': '1080x1920', 'label': '10" Tablet', 'required': False},
+            'feature_graphic': {'size': '1024x500', 'label': 'Feature Graphic', 'required': True},
+            'min_screenshots': 2,
+            'max_screenshots': 8,
+            'recommended_screenshots': 6,
+        }
+    }
+
+    # Category-specific screenshot orientation recommendations
+    CATEGORY_ORIENTATION = {
+        'games': 'landscape',
+        'entertainment': 'landscape',
+        'photo_video': 'portrait',
+        'social_networking': 'portrait',
+        'productivity': 'portrait',
+        'business': 'portrait',
+        'education': 'portrait',
+        'health_fitness': 'portrait',
+        'finance': 'portrait',
+        'music': 'portrait',
+        'travel': 'portrait',
+        'food_drink': 'portrait',
+        'shopping': 'portrait',
+        'utilities': 'portrait',
+        'weather': 'portrait',
+        'navigation': 'landscape',
+        'default': 'portrait',
+    }
+
+    def generate_screenshot_strategy(
+        self,
+        app_info: Dict[str, Any],
+        platform: Optional[str] = None
+    ) -> Dict[str, Any]:
+        """
+        Generate comprehensive screenshot optimization strategy.
+
+        Covers: screenshot count, ordering framework, text overlay guidance,
+        orientation, app preview video tips, and A/B testing recommendations.
+
+        Args:
+            app_info: Dict with 'name', 'category', 'key_features',
+                      'unique_value', 'target_audience', 'has_ipad' (bool)
+            platform: Override platform (default: self.platform)
+
+        Returns:
+            Complete screenshot strategy with actionable guidance.
+        """
+        plat = platform or self.platform
+        specs = self.SCREENSHOT_SPECS.get(plat, self.SCREENSHOT_SPECS['apple'])
+        category = app_info.get('category', 'default').lower().replace(' ', '_').replace('&', '_')
+        orientation = self.CATEGORY_ORIENTATION.get(category, self.CATEGORY_ORIENTATION['default'])
+        features = app_info.get('key_features', [])
+        has_ipad = app_info.get('has_ipad', False)
+
+        # Build the first-3-screenshot framework (7-second attention window)
+        first_three = self._build_first_three_framework(app_info)
+
+        # Build full screenshot sequence
+        full_sequence = self._build_full_screenshot_sequence(app_info, specs)
+
+        # Text overlay guidelines
+        text_overlay = self._generate_text_overlay_guidelines(plat)
+
+        # App preview video strategy
+        video_strategy = self._generate_video_strategy(plat, app_info)
+
+        # Device coverage
+        device_coverage = self._generate_device_coverage(plat, has_ipad)
+
+        # A/B testing recommendations for visuals
+        ab_visual = self._generate_visual_ab_tests()
+
+        return {
+            'platform': plat,
+            'orientation': orientation,
+            'orientation_rationale': (
+                f"'{category}' category apps perform best with {orientation} screenshots. "
+                f"{'Games and media apps benefit from landscape to show immersive content.' if orientation == 'landscape' else 'Utility and productivity apps perform best in portrait to match natural phone usage.'}"
+            ),
+            'screenshot_count': {
+                'minimum': specs['min_screenshots'],
+                'maximum': specs['max_screenshots'],
+                'recommended': specs['recommended_screenshots'],
+                'rationale': (
+                    f"Use {specs['recommended_screenshots']} screenshots to tell a complete story. "
+                    f"First 3 are critical — they appear in search results and determine 70% of conversion decisions."
+                )
+            },
+            'first_three_framework': first_three,
+            'full_sequence': full_sequence,
+            'text_overlay_guidelines': text_overlay,
+            'video_strategy': video_strategy,
+            'device_coverage': device_coverage,
+            'ab_testing_visuals': ab_visual,
+            'key_principles': [
+                'First 3 screenshots drive 70% of install decisions — make them count',
+                'Each screenshot should convey ONE clear benefit in under 2 seconds',
+                'Text overlays must be readable at thumbnail size (search results)',
+                'Show real app UI — avoid stock photos or abstract graphics',
+                'Use consistent visual branding across all screenshots',
+                'Dark mode screenshots can be a differentiator if competitors use light only',
+                'Seasonal screenshot updates (2-4x/year) keep the listing fresh'
+            ]
+        }
+
+    def _build_first_three_framework(self, app_info: Dict[str, Any]) -> List[Dict[str, str]]:
+        """
+        Build the critical first-3-screenshot framework.
+
+        Framework: Hero Value Prop → Key Differentiator → Social Proof / Wow Moment
+        Users spend ~7 seconds on a listing; first 3 screenshots must convert.
+        """
+        unique_value = app_info.get('unique_value', 'your core value')
+        features = app_info.get('key_features', ['key feature'])
+        name = app_info.get('name', 'App')
+
+        return [
+            {
+                'position': 1,
+                'purpose': 'Hero — Primary Value Proposition',
+                'guidance': (
+                    f"Show {name}'s single most compelling screen with a bold headline "
+                    f"communicating: '{unique_value}'. This screenshot alone must answer "
+                    f"'Why should I install this?' Use the app's signature screen."
+                ),
+                'headline_tip': 'Keep headline to 3-5 words. Benefit-focused, not feature-focused.',
+                'example_headline_pattern': '[Verb] + [Desired Outcome]',
+                'cvr_impact': '30-40% of conversion decision happens here'
+            },
+            {
+                'position': 2,
+                'purpose': 'Key Differentiator — What Makes You Different',
+                'guidance': (
+                    f"Highlight the feature that competitors lack: "
+                    f"'{features[0] if features else 'unique feature'}'. "
+                    f"Show this feature in action within the real app UI."
+                ),
+                'headline_tip': 'Frame as a benefit the user gets, not a feature name.',
+                'example_headline_pattern': '[Feature Benefit] in [Timeframe/Ease]',
+                'cvr_impact': '20-25% of conversion decision'
+            },
+            {
+                'position': 3,
+                'purpose': 'Social Proof or Wow Moment',
+                'guidance': (
+                    "Either show a visually impressive result/output from the app "
+                    "(the 'wow' moment), OR include social proof (rating callout, "
+                    "user count, award badge). Social proof builds trust for users "
+                    "still on the fence after screenshots 1-2."
+                ),
+                'headline_tip': 'Use numbers or quotes for social proof. Use "before/after" for wow moments.',
+                'example_headline_pattern': '"[User Quote]" or [Number]+ Users Love It',
+                'cvr_impact': '10-15% of conversion decision'
+            }
+        ]
+
+    def _build_full_screenshot_sequence(
+        self,
+        app_info: Dict[str, Any],
+        specs: Dict[str, Any]
+    ) -> List[Dict[str, str]]:
+        """Build recommended full screenshot sequence beyond the first 3."""
+        features = app_info.get('key_features', [])
+        recommended = specs.get('recommended_screenshots', 8)
+
+        sequence = [
+            {'position': 1, 'type': 'Hero value proposition'},
+            {'position': 2, 'type': 'Key differentiator feature'},
+            {'position': 3, 'type': 'Social proof / wow moment'},
+        ]
+
+        # Positions 4+ cycle through remaining features
+        remaining_types = [
+            'Secondary feature highlight',
+            'Workflow / multi-step process',
+            'Customization / personalization options',
+            'Integration / ecosystem (widgets, watch, etc.)',
+            'Settings / accessibility features',
+            'Before/after or results showcase',
+            'Pricing / free tier value summary',
+        ]
+
+        for i, stype in enumerate(remaining_types):
+            pos = i + 4
+            if pos > recommended:
+                break
+            feature_ref = features[min(i + 1, len(features) - 1)] if features else 'additional feature'
+            sequence.append({
+                'position': pos,
+                'type': stype,
+                'feature_to_highlight': feature_ref
+            })
+
+        return sequence
+
+    def _generate_text_overlay_guidelines(self, platform: str) -> Dict[str, Any]:
+        """Generate platform-specific text overlay best practices."""
+        return {
+            'general_rules': [
+                'Maximum 5-7 words per headline — must be readable at thumbnail size',
+                'Use bold, sans-serif fonts (SF Pro for Apple, Google Sans / Roboto for Google)',
+                'High contrast: dark text on light background or vice versa',
+                'Text should occupy no more than 20-25% of screenshot area',
+                'Consistent font size and positioning across all screenshots',
+                'Avoid text over complex UI areas — use solid color bars or gradients',
+            ],
+            'font_size_guidance': {
+                'headline': '48-72pt (at 1290x2796 canvas)',
+                'subheadline': '32-42pt',
+                'callout': '24-32pt',
+            },
+            'positioning': {
+                'top_text': 'Best for headlines — visible in search result thumbnails',
+                'bottom_text': 'Good for supplementary text — may be cut off in some placements',
+                'overlay_bar': 'Colored bar behind text improves readability on busy screenshots',
+            },
+            'platform_specific': {
+                'apple': 'Apple review guidelines prohibit excessive text overlays. Keep text minimal and ensure the app UI is the focus.',
+                'google': 'Google allows more text flexibility. Emoji in text overlays can improve engagement. Feature graphic (1024x500) is text-heavy by design.',
+            }.get(platform, ''),
+            'common_mistakes': [
+                'Text too small to read in search results (thumbnail view)',
+                'Using feature names instead of benefits as headlines',
+                'Inconsistent visual style across screenshots',
+                'Too much text obscuring the actual app UI',
+                'Low contrast text that disappears against the app background',
+            ]
+        }
+
+    def _generate_video_strategy(
+        self,
+        platform: str,
+        app_info: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """Generate app preview / promo video strategy."""
+        name = app_info.get('name', 'App')
+
+        base = {
+            'recommended': True,
+            'rationale': (
+                'App preview videos increase conversion rate by 15-25% on average. '
+                'They auto-play on WiFi in the App Store, making them a powerful '
+                'attention-grabbing tool.'
+            ),
+            'structure': [
+                {'time': '0-3s', 'content': f'Hook — show {name}\'s most impressive screen or result', 'importance': 'CRITICAL — 50% of viewers drop off after 3 seconds'},
+                {'time': '3-10s', 'content': 'Core workflow — demonstrate the primary use case end-to-end', 'importance': 'High — proves the app delivers on its promise'},
+                {'time': '10-20s', 'content': 'Secondary features — show 2-3 additional capabilities', 'importance': 'Medium — adds depth for engaged viewers'},
+                {'time': '20-30s', 'content': 'Call to action — end with value summary or social proof', 'importance': 'Medium — reinforces the install decision'},
+            ],
+            'best_practices': [
+                'First 3 seconds determine if users keep watching — lead with your best',
+                'Show real app usage, not animations or marketing graphics',
+                'Add subtitles — most videos auto-play without sound',
+                'Record at device resolution for crisp quality',
+                'Keep it under 30 seconds — shorter is better',
+                'End with a clear call to action frame',
+            ]
+        }
+
+        if platform == 'apple':
+            base['specs'] = {
+                'duration': '15-30 seconds',
+                'format': 'H.264 or Apple ProRes, .mov or .mp4',
+                'max_count': '3 per device size',
+                'note': 'Auto-plays on WiFi in App Store. First frame is the poster frame — make it compelling.'
+            }
+        else:
+            base['specs'] = {
+                'duration': '30 seconds - 2 minutes',
+                'format': 'YouTube link or direct upload',
+                'max_count': '1 promo video',
+                'note': 'Shown as first visual in listing. YouTube thumbnail is the poster — customize it.'
+            }
+
+        return base
+
+    def _generate_device_coverage(self, platform: str, has_ipad: bool) -> Dict[str, Any]:
+        """Generate device coverage recommendations."""
+        specs = self.SCREENSHOT_SPECS.get(platform, {})
+
+        required_devices = []
+        optional_devices = []
+
+        for key, spec in specs.items():
+            if isinstance(spec, dict) and 'label' in spec:
+                entry = {'device': spec['label'], 'size': spec['size']}
+                if spec.get('required'):
+                    required_devices.append(entry)
+                else:
+                    # iPad is optional but recommended if app supports it
+                    if 'iPad' in spec['label'] and not has_ipad:
+                        continue
+                    optional_devices.append(entry)
+
+        return {
+            'required': required_devices,
+            'optional': optional_devices,
+            'recommendation': (
+                f"Always provide screenshots for all required device sizes. "
+                f"{'Include iPad screenshots — iPad users convert at 1.5x the rate of phone users.' if has_ipad else 'iPad screenshots are optional if your app is iPhone-only.'} "
+                f"Apple auto-scales between sizes but custom screenshots per size look significantly better."
+            )
+        }
+
+    def _generate_visual_ab_tests(self) -> List[Dict[str, Any]]:
+        """Generate A/B testing recommendations for visual assets."""
+        return [
+            {
+                'test': 'First Screenshot Variant',
+                'priority': 1,
+                'cvr_impact': '10-20%',
+                'what_to_test': 'Headline copy, background color, featured screen',
+                'duration': '14 days minimum',
+                'traffic': '50/50 split',
+                'tip': 'Only change ONE element per test to isolate impact.'
+            },
+            {
+                'test': 'App Icon Variant',
+                'priority': 2,
+                'cvr_impact': '15-30%',
+                'what_to_test': 'Color scheme, symbol vs text, background style',
+                'duration': '14 days minimum',
+                'traffic': '50/50 split',
+                'tip': 'Icon is the MOST viewed asset. Test at 60x60px (actual display size) — details invisible at that scale.'
+            },
+            {
+                'test': 'Screenshot Sequence Order',
+                'priority': 3,
+                'cvr_impact': '5-15%',
+                'what_to_test': 'Different feature ordering in positions 2-5',
+                'duration': '14 days minimum',
+                'traffic': '50/50 split',
+                'tip': 'Lead with the feature that resonates most with your largest user segment.'
+            },
+            {
+                'test': 'Dark Mode vs Light Mode Screenshots',
+                'priority': 4,
+                'cvr_impact': '3-8%',
+                'what_to_test': 'Full dark mode set vs full light mode set',
+                'duration': '14 days minimum',
+                'traffic': '50/50 split',
+                'tip': 'Dark mode stands out in search results where most competitors use light backgrounds.'
+            }
+        ]
+
 
 def optimize_app_metadata(
     platform: str,

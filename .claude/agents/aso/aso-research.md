@@ -120,15 +120,67 @@ Structure:
 - **Best Practices** — patterns from successful competitors
 - **Competitive Positioning** — how to differentiate
 
-## 4. Handoff
+## 4. Apple Search Ads Integration
 
-After completing both deliverables, verify:
+When performing keyword research, also provide Apple Search Ads readiness analysis:
+
+### Keyword Categorization for Paid vs Organic
+
+For each primary keyword, assess:
+- **Organic-first keywords:** Terms where the app can realistically rank top 5 organically within 3 months. Focus metadata optimization here. Don't spend ad budget on these.
+- **Paid-competitive keywords:** High-volume terms dominated by established competitors (100K+ ratings). These require Apple Search Ads to gain visibility. Budget allocation: start at $5-10/day per keyword.
+- **Hybrid keywords:** Mid-competition terms. Use organic optimization AND low-bid ads to accelerate ranking. Reduce ad spend as organic ranking improves.
+
+### CPP + Apple Search Ads Synergy
+
+When Custom Product Pages exist (from aso-optimizer's `02-metadata/custom-product-pages.md`):
+- Map each CPP to the keyword clusters it targets
+- Recommend linking specific CPPs to Apple Search Ads campaigns for those keywords
+- This delivers keyword-matched landing pages for paid traffic → higher conversion rate → lower cost per tap
+
+### Deliverable Addition to keyword-list.md
+
+Add a section: **Apple Search Ads Readiness**
+- Keyword-by-keyword classification: organic / paid / hybrid
+- Recommended starting daily budget per keyword group
+- CPP-to-keyword mapping for ad campaigns
+- Estimated total monthly ad budget (conservative starter)
+
+### Budget Framework
+
+| App Maturity | Monthly Budget Range | Strategy |
+|-------------|---------------------|----------|
+| Pre-launch | $150-300/month | Discovery campaigns only, broad match |
+| New (< 6 months) | $300-800/month | Exact match on 10-15 priority keywords |
+| Established | $500-2000/month | Full funnel: brand + category + competitor |
+
+**Note:** Apple Search Ads data (search popularity, suggested bids) is the most reliable keyword volume proxy available. Recommend the user create a free Apple Search Ads account even if they don't plan to run ads — the keyword insights alone are valuable.
+
+## 5. Category & Competitive Positioning
+
+### Category Selection Analysis
+
+When analyzing competitors, also assess:
+- **Primary category fit:** Is the app in the best primary category? Compare visibility vs competition.
+- **Secondary category opportunity:** Identify a less competitive secondary category for additional discovery.
+- **Category competition density:** Count the number of apps with 10K+ ratings in the category.
+
+Include in `competitor-gaps.md`:
+- Current category assessment (optimal vs. consider switching)
+- Secondary category recommendation
+- Category-specific keyword patterns (what works in this category)
+
+## 6. Handoff
+
+After completing all deliverables, verify:
 - At least 10 primary keywords with specific implementation locations
 - At least 3 competitors analyzed with real data
+- Keywords categorized for organic vs paid strategy
+- Category analysis included
 - Data sources cited (API vs estimate)
 - Files written to correct paths
 
-Summarize key findings for aso-master: top keywords, biggest competitive gaps, recommended differentiation angle.
+Summarize key findings for aso-master: top keywords, biggest competitive gaps, recommended differentiation angle, Apple Search Ads budget estimate, category recommendation.
 
 </responsibilities>
 

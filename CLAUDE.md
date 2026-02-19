@@ -24,11 +24,11 @@ cp .claude/commands/aso/*.md ~/.claude/commands/
 Single source of truth: `app-store-optimization/` (distributable skill package).
 
 ```
-app-store-optimization/     # 8 Python modules + lib/ data fetching
+app-store-optimization/     # 10 Python modules + lib/ data fetching
 .claude/agents/aso/          # 4 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
 .claude/templates/           # 5 output templates
-outputs/[app-name]/          # Generated deliverables (11 files)
+outputs/[app-name]/          # Generated deliverables (13 files)
 ```
 
 See `.claude/ARCHITECTURE.md` for the full data flow diagram and layer breakdown.
@@ -40,13 +40,15 @@ All in `app-store-optimization/`:
 | Module | Purpose | Key Functions |
 |--------|---------|---------------|
 | `keyword_analyzer.py` | Keyword research | `analyze_keyword()`, `find_long_tail_opportunities()` |
-| `metadata_optimizer.py` | Title/description generation | `optimize_title()`, `validate_character_limits()` |
+| `metadata_optimizer.py` | Title/description + visual strategy | `optimize_title()`, `validate_character_limits()`, `generate_screenshot_strategy()` |
 | `competitor_analyzer.py` | Competitor gap analysis | `analyze_competitor()`, `identify_gaps()` |
-| `aso_scorer.py` | ASO health score (0-100) | `calculate_overall_score()` |
+| `aso_scorer.py` | ASO health score + category/funnel | `calculate_overall_score()`, `analyze_category_fit()`, `analyze_conversion_funnel()` |
 | `ab_test_planner.py` | A/B testing strategy | `design_test()`, `calculate_significance()` |
 | `localization_helper.py` | Multi-language optimization | `identify_target_markets()` |
 | `review_analyzer.py` | Review sentiment analysis | `analyze_sentiment()`, `extract_common_themes()` |
 | `launch_checklist.py` | Pre-launch validation | `generate_prelaunch_checklist()` |
+| `cpp_planner.py` | Custom Product Pages strategy | `identify_cpp_opportunities()`, `generate_cpp_spec()` |
+| `event_planner.py` | In-App Events planning | `plan_event_calendar()`, `generate_event_metadata()` |
 
 **Data fetching** in `app-store-optimization/lib/`:
 - `itunes_api.py` — iTunes Search API wrapper (free, no auth)
@@ -58,6 +60,8 @@ All in `app-store-optimization/`:
 
 **Apple App Store:** Title 30, Subtitle 30, Promo Text 170, Keywords 100, Description 4000
 **Google Play Store:** Title 50, Short Description 80, Full Description 4000
+**Apple In-App Events:** Name 30, Short Desc 50, Long Desc 120 (max 10 events, 5 simultaneous)
+**Apple CPPs:** Promo Text 170 per CPP, up to 70 CPPs per app
 
 These limits are enforced by agents via shared-protocol.md and validated in metadata outputs.
 
@@ -85,7 +89,7 @@ These limits are enforced by agents via shared-protocol.md and validated in meta
 | `/aso-prelaunch [app] [date]` | aso-strategist directly | 8-10 min |
 | `/aso-competitor [app] [competitors]` | aso-research directly | 10-15 min |
 
-## Output Structure (11 files)
+## Output Structure (13 files)
 
 ```
 outputs/[app-name]/
@@ -96,7 +100,8 @@ outputs/[app-name]/
 ├── 02-metadata/
 │   ├── apple-metadata.md
 │   ├── google-metadata.md
-│   └── visual-assets-spec.md
+│   ├── visual-assets-spec.md
+│   └── custom-product-pages.md
 ├── 03-testing/
 │   └── ab-test-setup.md
 ├── 04-launch/
@@ -104,7 +109,8 @@ outputs/[app-name]/
 │   └── timeline.md
 ├── 05-optimization/
 │   ├── review-responses.md
-│   └── ongoing-tasks.md
+│   ├── ongoing-tasks.md
+│   └── event-calendar.md
 └── FINAL-REPORT.md
 ```
 

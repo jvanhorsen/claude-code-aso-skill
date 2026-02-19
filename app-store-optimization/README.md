@@ -1,10 +1,10 @@
 # App Store Optimization (ASO) Skill
 
-**Version**: 1.0.0
+**Version**: 1.2.0
 
 ## Overview
 
-A comprehensive App Store Optimization skill for Claude Code that provides keyword research, metadata optimization, competitor analysis, A/B testing, review analysis, localization, and launch planning for Apple App Store and Google Play Store.
+A comprehensive App Store Optimization skill for Claude Code that provides keyword research, metadata optimization, competitor analysis, A/B testing, review analysis, localization, launch planning, Custom Product Pages (CPPs), In-App Events, visual asset optimization, and Apple Search Ads strategy for Apple App Store and Google Play Store.
 
 ## Installation
 
@@ -17,7 +17,7 @@ cp -r app-store-optimization /path/to/project/.claude/skills/
 
 # Verify
 ls ~/.claude/skills/app-store-optimization/
-# Should show: SKILL.md, 8 Python modules, lib/, sample files
+# Should show: SKILL.md, 10 Python modules, lib/, sample files
 ```
 
 ## Quick Start
@@ -43,6 +43,8 @@ Claude will use the appropriate Python modules to analyze keywords, competitors,
 | **Localization** | Market prioritization, translation management, ROI analysis |
 | **Review Analysis** | Sentiment analysis, theme extraction, response templates |
 | **Launch Planning** | Pre-launch checklists, timeline generation, compliance validation |
+| **Custom Product Pages** | CPP opportunity identification, promotional text variants, priority scoring |
+| **In-App Events** | Seasonal event calendar, event metadata generation, badge type recommendations |
 
 ## Python Modules
 
@@ -77,6 +79,18 @@ Review sentiment analysis and response template generation.
 ### launch_checklist.py
 Pre-launch validation and timing optimization.
 - `generate_prelaunch_checklist()`, `optimize_launch_timing()`
+
+### cpp_planner.py
+Custom Product Pages strategy and specification generation.
+- `identify_cpp_opportunities()`, `plan_cpp_variants()`, `calculate_cpp_priority()`, `generate_cpp_spec()`
+- Supports keyword-cluster, audience-segment, feature-specific, and competitor-gap CPP strategies
+- Generates promotional text variants (170 chars) and screenshot guidance per CPP
+
+### event_planner.py
+In-App Events and Promotional Content planning.
+- `plan_event_calendar()`, `generate_event_metadata()`, `identify_event_types()`, `suggest_seasonal_events()`
+- Apple In-App Event character limits: Name 30, Short Description 50, Long Description 120
+- Seasonal calendar with 12-month event hooks and category-specific event type mapping
 
 ## Platform Character Limits
 
@@ -160,7 +174,7 @@ Complete data source documentation with capabilities and limitations.
 - **Python**: 3.7+ (standard library only, zero external dependencies)
 - **Data format**: JSON input/output
 - **Platforms**: Apple App Store + Google Play Store
-- **Scope**: Organic ASO only (no paid acquisition / Apple Search Ads / Google Ads)
+- **Scope**: Organic ASO + Apple Search Ads readiness (CPP integration, keyword strategy for paid/organic)
 
 ## Limitations
 

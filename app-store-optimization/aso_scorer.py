@@ -454,6 +454,390 @@ class ASOScorer:
 
         return weaknesses if weaknesses else ["All areas performing adequately"]
 
+    # -------------------------------------------------------------------------
+    # Category Strategy
+    # -------------------------------------------------------------------------
+
+    # Category competition benchmarks (apps with 10K+ ratings)
+    CATEGORY_COMPETITION = {
+        'games': {'density': 'very_high', 'avg_top10_ratings': 500000},
+        'entertainment': {'density': 'high', 'avg_top10_ratings': 200000},
+        'social_networking': {'density': 'high', 'avg_top10_ratings': 300000},
+        'photo_video': {'density': 'high', 'avg_top10_ratings': 150000},
+        'productivity': {'density': 'medium', 'avg_top10_ratings': 80000},
+        'business': {'density': 'medium', 'avg_top10_ratings': 50000},
+        'education': {'density': 'medium', 'avg_top10_ratings': 60000},
+        'health_fitness': {'density': 'medium', 'avg_top10_ratings': 70000},
+        'finance': {'density': 'medium', 'avg_top10_ratings': 90000},
+        'utilities': {'density': 'medium', 'avg_top10_ratings': 40000},
+        'music': {'density': 'medium', 'avg_top10_ratings': 100000},
+        'shopping': {'density': 'medium', 'avg_top10_ratings': 80000},
+        'travel': {'density': 'medium', 'avg_top10_ratings': 60000},
+        'food_drink': {'density': 'low', 'avg_top10_ratings': 30000},
+        'sports': {'density': 'low', 'avg_top10_ratings': 40000},
+        'navigation': {'density': 'low', 'avg_top10_ratings': 50000},
+        'weather': {'density': 'low', 'avg_top10_ratings': 35000},
+        'reference': {'density': 'low', 'avg_top10_ratings': 20000},
+        'books': {'density': 'low', 'avg_top10_ratings': 25000},
+        'medical': {'density': 'low', 'avg_top10_ratings': 15000},
+    }
+
+    # Funnel stage benchmarks by category
+    FUNNEL_BENCHMARKS = {
+        'high_competition': {
+            'impressions_to_page_views': {'poor': 0.03, 'average': 0.06, 'good': 0.10, 'excellent': 0.15},
+            'page_views_to_installs': {'poor': 0.15, 'average': 0.30, 'good': 0.45, 'excellent': 0.60},
+            'overall_cvr': {'poor': 0.005, 'average': 0.02, 'good': 0.04, 'excellent': 0.08},
+        },
+        'medium_competition': {
+            'impressions_to_page_views': {'poor': 0.05, 'average': 0.08, 'good': 0.12, 'excellent': 0.18},
+            'page_views_to_installs': {'poor': 0.20, 'average': 0.35, 'good': 0.50, 'excellent': 0.65},
+            'overall_cvr': {'poor': 0.01, 'average': 0.03, 'good': 0.06, 'excellent': 0.10},
+        },
+        'low_competition': {
+            'impressions_to_page_views': {'poor': 0.06, 'average': 0.10, 'good': 0.15, 'excellent': 0.22},
+            'page_views_to_installs': {'poor': 0.25, 'average': 0.40, 'good': 0.55, 'excellent': 0.70},
+            'overall_cvr': {'poor': 0.015, 'average': 0.04, 'good': 0.08, 'excellent': 0.15},
+        },
+    }
+
+    def analyze_category_fit(
+        self,
+        app_info: Dict[str, Any],
+        current_category: str,
+        alternative_categories: Optional[List[str]] = None
+    ) -> Dict[str, Any]:
+        """
+        Analyze whether the app is in the optimal category and suggest alternatives.
+
+        Args:
+            app_info: Dict with 'name', 'ratings_count', 'average_rating',
+                      'key_features', 'description'
+            current_category: Current primary category (e.g., 'productivity')
+            alternative_categories: Optional list of categories to evaluate
+
+        Returns:
+            Category analysis with recommendations.
+        """
+        current_cat_lower = current_category.lower().replace(' ', '_').replace('&', '_')
+        current_data = self.CATEGORY_COMPETITION.get(
+            current_cat_lower,
+            {'density': 'medium', 'avg_top10_ratings': 50000}
+        )
+
+        ratings_count = app_info.get('ratings_count', 0)
+
+        # Assess competitiveness in current category
+        competitiveness = self._assess_category_competitiveness(
+            ratings_count, current_data
+        )
+
+        # Evaluate alternatives if provided
+        alternative_analysis = []
+        if alternative_categories:
+            for alt_cat in alternative_categories:
+                alt_lower = alt_cat.lower().replace(' ', '_').replace('&', '_')
+                alt_data = self.CATEGORY_COMPETITION.get(
+                    alt_lower,
+                    {'density': 'medium', 'avg_top10_ratings': 50000}
+                )
+                alt_competitiveness = self._assess_category_competitiveness(
+                    ratings_count, alt_data
+                )
+                alternative_analysis.append({
+                    'category': alt_cat,
+                    'density': alt_data['density'],
+                    'avg_top10_ratings': alt_data['avg_top10_ratings'],
+                    'competitiveness': alt_competitiveness,
+                    'easier_than_current': alt_data['avg_top10_ratings'] < current_data['avg_top10_ratings']
+                })
+
+        # Secondary category recommendation
+        secondary_rec = self._recommend_secondary_category(
+            current_cat_lower, app_info.get('key_features', [])
+        )
+
+        return {
+            'current_category': {
+                'name': current_category,
+                'density': current_data['density'],
+                'avg_top10_ratings': current_data['avg_top10_ratings'],
+                'your_ratings': ratings_count,
+                'competitiveness': competitiveness,
+            },
+            'alternatives': alternative_analysis,
+            'secondary_category': secondary_rec,
+            'recommendation': self._generate_category_recommendation(
+                current_data, competitiveness, alternative_analysis
+            ),
+            'switching_considerations': [
+                'Category changes take effect with the next app update submission',
+                'Rankings in the old category are lost immediately',
+                'Building rankings in a new category takes 2-4 weeks',
+                'Best time to switch: with a major update that justifies the new category',
+                'Monitor competitor density before switching — categories shift over time',
+            ]
+        }
+
+    def analyze_conversion_funnel(
+        self,
+        funnel_data: Dict[str, Any],
+        category: str = 'medium_competition'
+    ) -> Dict[str, Any]:
+        """
+        Analyze the conversion funnel and diagnose where users are dropping off.
+
+        Funnel: Impressions → Product Page Views → Installs → Day-1 Retention
+
+        Args:
+            funnel_data: Dict with 'impressions', 'page_views', 'installs',
+                        'day1_retention_rate' (0-1)
+            category: Competition level for benchmark comparison
+
+        Returns:
+            Funnel analysis with stage-by-stage diagnosis.
+        """
+        impressions = funnel_data.get('impressions', 0)
+        page_views = funnel_data.get('page_views', 0)
+        installs = funnel_data.get('installs', 0)
+        retention = funnel_data.get('day1_retention_rate', 0.0)
+
+        # Calculate conversion rates
+        imp_to_pv = (page_views / impressions) if impressions > 0 else 0
+        pv_to_install = (installs / page_views) if page_views > 0 else 0
+        overall_cvr = (installs / impressions) if impressions > 0 else 0
+
+        # Get benchmarks
+        cat_key = self._map_to_competition_level(category)
+        benchmarks = self.FUNNEL_BENCHMARKS.get(cat_key, self.FUNNEL_BENCHMARKS['medium_competition'])
+
+        # Assess each stage
+        stages = {
+            'impressions_to_page_views': {
+                'rate': round(imp_to_pv, 4),
+                'rate_pct': f"{imp_to_pv * 100:.2f}%",
+                'assessment': self._assess_funnel_stage(imp_to_pv, benchmarks['impressions_to_page_views']),
+                'benchmarks': benchmarks['impressions_to_page_views'],
+                'diagnosis_if_low': {
+                    'problem': 'Users see your app in search but don\'t tap to learn more.',
+                    'likely_causes': [
+                        'App icon doesn\'t stand out in search results',
+                        'Title doesn\'t match search intent',
+                        'Subtitle doesn\'t communicate clear value',
+                        'Low star rating visible in search results',
+                        'First screenshot not compelling at thumbnail size',
+                    ],
+                    'fix_priority': ['App icon A/B test', 'Title keyword optimization', 'First screenshot redesign']
+                }
+            },
+            'page_views_to_installs': {
+                'rate': round(pv_to_install, 4),
+                'rate_pct': f"{pv_to_install * 100:.2f}%",
+                'assessment': self._assess_funnel_stage(pv_to_install, benchmarks['page_views_to_installs']),
+                'benchmarks': benchmarks['page_views_to_installs'],
+                'diagnosis_if_low': {
+                    'problem': 'Users visit your page but don\'t install.',
+                    'likely_causes': [
+                        'Screenshots don\'t demonstrate clear value',
+                        'Description doesn\'t address user needs',
+                        'Negative reviews visible on product page',
+                        'App size too large (especially on cellular)',
+                        'Pricing friction (if paid app)',
+                        'No app preview video to demonstrate features',
+                    ],
+                    'fix_priority': ['Screenshot sequence redesign', 'Description rewrite', 'Review response strategy']
+                }
+            },
+            'overall_conversion': {
+                'rate': round(overall_cvr, 4),
+                'rate_pct': f"{overall_cvr * 100:.2f}%",
+                'assessment': self._assess_funnel_stage(overall_cvr, benchmarks['overall_cvr']),
+                'benchmarks': benchmarks['overall_cvr'],
+            },
+            'retention': {
+                'day1_rate': round(retention, 4),
+                'day1_rate_pct': f"{retention * 100:.1f}%",
+                'assessment': 'good' if retention >= 0.25 else ('average' if retention >= 0.15 else 'poor'),
+                'diagnosis_if_low': {
+                    'problem': 'Users install but don\'t come back.',
+                    'likely_causes': [
+                        'App doesn\'t deliver on the promise shown in screenshots/description',
+                        'Poor onboarding experience',
+                        'Missing core feature users expected',
+                        'Performance issues (slow, crashes)',
+                    ],
+                    'fix_priority': ['Onboarding optimization', 'Feature gap analysis', 'Performance profiling']
+                }
+            }
+        }
+
+        # Identify biggest bottleneck
+        bottleneck = self._identify_funnel_bottleneck(stages)
+
+        return {
+            'funnel_data': {
+                'impressions': impressions,
+                'page_views': page_views,
+                'installs': installs,
+                'day1_retention_rate': retention,
+            },
+            'stages': stages,
+            'biggest_bottleneck': bottleneck,
+            'summary': (
+                f"Overall CVR: {overall_cvr * 100:.2f}% "
+                f"({'above' if stages['overall_conversion']['assessment'] in ('good', 'excellent') else 'below'} "
+                f"category average). "
+                f"Biggest opportunity: {bottleneck['stage']} — {bottleneck['diagnosis']}."
+            )
+        }
+
+    def _assess_category_competitiveness(
+        self,
+        ratings_count: int,
+        category_data: Dict[str, Any]
+    ) -> str:
+        """Assess how competitive the app is within its category."""
+        avg_top10 = category_data.get('avg_top10_ratings', 50000)
+
+        ratio = ratings_count / avg_top10 if avg_top10 > 0 else 0
+
+        if ratio >= 0.5:
+            return 'strong_contender'
+        elif ratio >= 0.1:
+            return 'competitive'
+        elif ratio >= 0.01:
+            return 'developing'
+        else:
+            return 'early_stage'
+
+    def _recommend_secondary_category(
+        self,
+        primary_category: str,
+        features: List[str]
+    ) -> Dict[str, str]:
+        """Recommend a secondary category based on features and primary category."""
+        # Common secondary category pairings
+        pairings = {
+            'productivity': ['business', 'utilities', 'education'],
+            'business': ['productivity', 'finance', 'utilities'],
+            'health_fitness': ['medical', 'lifestyle', 'sports'],
+            'education': ['reference', 'books', 'productivity'],
+            'finance': ['business', 'utilities', 'productivity'],
+            'social_networking': ['entertainment', 'lifestyle', 'photo_video'],
+            'photo_video': ['entertainment', 'social_networking', 'lifestyle'],
+            'entertainment': ['music', 'games', 'social_networking'],
+            'food_drink': ['lifestyle', 'health_fitness', 'shopping'],
+            'travel': ['navigation', 'lifestyle', 'utilities'],
+            'shopping': ['lifestyle', 'food_drink', 'utilities'],
+            'utilities': ['productivity', 'business', 'lifestyle'],
+        }
+
+        suggestions = pairings.get(primary_category, ['utilities', 'lifestyle', 'productivity'])
+
+        return {
+            'recommended': suggestions[0] if suggestions else 'utilities',
+            'alternatives': suggestions[1:3] if len(suggestions) > 1 else [],
+            'rationale': (
+                f"'{suggestions[0]}' complements '{primary_category}' and typically has "
+                f"lower competition, providing additional discovery surface."
+            )
+        }
+
+    def _generate_category_recommendation(
+        self,
+        current_data: Dict[str, Any],
+        competitiveness: str,
+        alternatives: List[Dict[str, Any]]
+    ) -> str:
+        """Generate category strategy recommendation."""
+        if competitiveness in ('strong_contender', 'competitive'):
+            return (
+                "Stay in current category — you have sufficient ratings to compete. "
+                "Focus on optimizing metadata and visuals for higher conversion."
+            )
+
+        # Check if any alternative is significantly easier
+        easier_alternatives = [a for a in alternatives if a.get('easier_than_current')]
+        if easier_alternatives:
+            best_alt = min(easier_alternatives, key=lambda x: x['avg_top10_ratings'])
+            return (
+                f"Consider switching to '{best_alt['category']}' — "
+                f"competition is lower (avg top 10: {best_alt['avg_top10_ratings']:,} ratings vs "
+                f"{current_data['avg_top10_ratings']:,} in current category). "
+                f"Time this with a major app update."
+            )
+
+        return (
+            "Current category is appropriate but competitive. Focus on building ratings "
+            "volume and long-tail keyword strategy to gain visibility gradually."
+        )
+
+    def _map_to_competition_level(self, category: str) -> str:
+        """Map category name to competition level for benchmark lookup."""
+        cat_lower = category.lower().replace(' ', '_').replace('&', '_')
+        cat_data = self.CATEGORY_COMPETITION.get(cat_lower, {})
+        density = cat_data.get('density', category)
+
+        mapping = {
+            'very_high': 'high_competition',
+            'high': 'high_competition',
+            'medium': 'medium_competition',
+            'low': 'low_competition',
+            'high_competition': 'high_competition',
+            'medium_competition': 'medium_competition',
+            'low_competition': 'low_competition',
+        }
+        return mapping.get(density, 'medium_competition')
+
+    def _assess_funnel_stage(self, rate: float, benchmarks: Dict[str, float]) -> str:
+        """Assess a funnel stage rate against benchmarks."""
+        if rate >= benchmarks['excellent']:
+            return 'excellent'
+        elif rate >= benchmarks['good']:
+            return 'good'
+        elif rate >= benchmarks['average']:
+            return 'average'
+        else:
+            return 'poor'
+
+    def _identify_funnel_bottleneck(self, stages: Dict[str, Any]) -> Dict[str, str]:
+        """Identify the biggest conversion bottleneck in the funnel."""
+        bottlenecks = []
+
+        for stage_name in ('impressions_to_page_views', 'page_views_to_installs'):
+            stage = stages.get(stage_name, {})
+            assessment = stage.get('assessment', 'average')
+            if assessment in ('poor', 'average'):
+                diagnosis = stage.get('diagnosis_if_low', {})
+                bottlenecks.append({
+                    'stage': stage_name.replace('_', ' ').title(),
+                    'assessment': assessment,
+                    'diagnosis': diagnosis.get('problem', 'Performance below benchmark'),
+                    'fix_priority': diagnosis.get('fix_priority', []),
+                })
+
+        # Also check retention
+        retention = stages.get('retention', {})
+        if retention.get('assessment') == 'poor':
+            bottlenecks.append({
+                'stage': 'Day-1 Retention',
+                'assessment': 'poor',
+                'diagnosis': retention.get('diagnosis_if_low', {}).get('problem', 'Low retention'),
+                'fix_priority': retention.get('diagnosis_if_low', {}).get('fix_priority', []),
+            })
+
+        if not bottlenecks:
+            return {
+                'stage': 'None',
+                'assessment': 'good',
+                'diagnosis': 'All funnel stages performing at or above benchmarks.',
+                'fix_priority': []
+            }
+
+        # Return the worst bottleneck (poor > average)
+        bottlenecks.sort(key=lambda x: 0 if x['assessment'] == 'poor' else 1)
+        return bottlenecks[0]
+
 
 def calculate_aso_score(
     metadata: Dict[str, Any],

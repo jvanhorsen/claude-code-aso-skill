@@ -28,12 +28,14 @@ app-store-optimization/
 ├── SKILL.md                      # Skill definition for Claude Code
 ├── keyword_analyzer.py           # Keyword research module
 ├── competitor_analyzer.py        # Competitor intelligence
-├── metadata_optimizer.py         # Metadata generation
-├── aso_scorer.py                 # ASO health scoring
+├── metadata_optimizer.py         # Metadata + visual asset optimization
+├── aso_scorer.py                 # ASO health scoring + category/funnel analysis
 ├── ab_test_planner.py            # A/B testing strategy
 ├── localization_helper.py        # Multi-language optimization
 ├── review_analyzer.py            # Review sentiment analysis
 ├── launch_checklist.py           # Pre-launch validation
+├── cpp_planner.py                # Custom Product Pages strategy
+├── event_planner.py              # In-App Events planning
 └── lib/                          # Data fetching utilities
     ├── itunes_api.py             # iTunes Search API wrapper
     ├── scraper.py                # WebFetch utilities
@@ -64,21 +66,25 @@ aso-master
 Phase 1: aso-research
     - Uses: app-store-optimization/keyword_analyzer.py
     - Uses: app-store-optimization/competitor_analyzer.py
+    - Uses: app-store-optimization/aso_scorer.py (category analysis)
     - Fetches: iTunes API data
     - Output: keyword-list.md, competitor-gaps.md
+    - Includes: Apple Search Ads keyword categorization, category positioning
     ↓
 Phase 2: aso-optimizer
-    - Uses: app-store-optimization/metadata_optimizer.py
+    - Uses: app-store-optimization/metadata_optimizer.py (metadata + visual strategy)
     - Uses: app-store-optimization/ab_test_planner.py
-    - Output: apple-metadata.md, google-metadata.md
+    - Uses: app-store-optimization/cpp_planner.py
+    - Output: apple-metadata.md, google-metadata.md, custom-product-pages.md
     ↓
 Phase 3: aso-strategist
-    - Uses: app-store-optimization/aso_scorer.py
+    - Uses: app-store-optimization/aso_scorer.py (health + funnel)
     - Uses: app-store-optimization/launch_checklist.py
-    - Output: timeline.md, prelaunch-checklist.md
+    - Uses: app-store-optimization/event_planner.py
+    - Output: timeline.md, prelaunch-checklist.md, event-calendar.md
     ↓
 aso-master (synthesis)
-    - Output: 00-MASTER-ACTION-PLAN.md
+    - Output: 00-MASTER-ACTION-PLAN.md (includes Apple Search Ads Readiness)
 ```
 
 ---
@@ -117,7 +123,8 @@ outputs/[app-name]/
 ├── 02-metadata/
 │   ├── apple-metadata.md
 │   ├── google-metadata.md
-│   └── visual-assets-spec.md
+│   ├── visual-assets-spec.md
+│   └── custom-product-pages.md
 ├── 03-testing/
 │   └── ab-test-setup.md
 ├── 04-launch/
@@ -125,7 +132,8 @@ outputs/[app-name]/
 │   └── timeline.md
 ├── 05-optimization/
 │   ├── review-responses.md
-│   └── ongoing-tasks.md
+│   ├── ongoing-tasks.md
+│   └── event-calendar.md
 └── FINAL-REPORT.md
 ```
 
@@ -153,18 +161,24 @@ outputs/[app-name]/
 │ Phase 1: aso-research                          │
 │ iTunes API → keyword_analyzer.py               │
 │ iTunes API → competitor_analyzer.py            │
+│ aso_scorer.py → category analysis              │
 │ → outputs/[app]/01-research/                   │
+│ (incl. Apple Search Ads keyword strategy)      │
 └────────┬───────────────────────────────────────┘
          ↓
 ┌────────────────────────────────────────────────┐
 │ Phase 2: aso-optimizer                         │
 │ Keywords from Phase 1 → metadata_optimizer.py  │
+│ metadata_optimizer.py → screenshot strategy    │
+│ cpp_planner.py → Custom Product Pages          │
 │ → outputs/[app]/02-metadata/                   │
 └────────┬───────────────────────────────────────┘
          ↓
 ┌────────────────────────────────────────────────┐
 │ Phase 3: aso-strategist                        │
 │ All prior outputs → aso_scorer.py              │
+│ aso_scorer.py → conversion funnel analysis     │
+│ event_planner.py → In-App Events calendar      │
 │ → outputs/[app]/04-launch/                     │
 │ → outputs/[app]/05-optimization/               │
 └────────┬───────────────────────────────────────┘

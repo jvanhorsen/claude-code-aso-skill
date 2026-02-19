@@ -183,27 +183,29 @@ March 15, 2026."
 
 ## Output Structure
 
-Every `/aso-full-audit` generates:
+Every `/aso-full-audit` generates 13 files:
 
 ```
 outputs/[app-name]/
-├── 00-MASTER-ACTION-PLAN.md       # Start here - consolidated roadmap
+├── 00-MASTER-ACTION-PLAN.md       # Start here - consolidated roadmap + Apple Search Ads readiness
 ├── 01-research/
-│   ├── keyword-list.md            # Prioritized keywords
-│   └── competitor-gaps.md         # Competitive opportunities
+│   ├── keyword-list.md            # Prioritized keywords (organic vs paid categorization)
+│   └── competitor-gaps.md         # Competitive opportunities + category positioning
 ├── 02-metadata/
-│   ├── apple-metadata.md          # Copy-paste for App Store Connect
-│   ├── google-metadata.md         # Copy-paste for Play Console
-│   └── visual-assets-spec.md      # Icon/screenshot requirements
+│   ├── apple-metadata.md          # Copy-paste for App Store Connect (incl. CPP sections)
+│   ├── google-metadata.md         # Copy-paste for Play Console (incl. screenshot strategy)
+│   ├── visual-assets-spec.md      # Icon/screenshot requirements
+│   └── custom-product-pages.md    # CPP strategy, specs, and promotional text variants
 ├── 03-testing/
-│   └── ab-test-setup.md           # A/B test configuration
+│   └── ab-test-setup.md           # A/B test configuration (incl. visual A/B tests)
 ├── 04-launch/
 │   ├── prelaunch-checklist.md     # Validation checklist
-│   └── timeline.md                # Calendar dates
+│   └── timeline.md                # Calendar dates (incl. Events & CPP phases)
 ├── 05-optimization/
 │   ├── review-responses.md        # Review reply templates
-│   └── ongoing-tasks.md           # Maintenance schedule
-└── FINAL-REPORT.md                # Executive summary
+│   ├── ongoing-tasks.md           # Maintenance schedule
+│   └── event-calendar.md          # In-App Events strategy and 6-month calendar
+└── FINAL-REPORT.md                # Executive summary + conversion funnel analysis
 ```
 
 ---
@@ -216,6 +218,10 @@ outputs/[app-name]/
 4. **Re-run audits quarterly** to refresh keywords, competitive intelligence, and ASO score.
 5. **Always have an A/B test running** — continuous testing is key to ASO improvement.
 6. **Use ongoing-tasks.md** for daily/weekly/monthly maintenance cadence.
+7. **Set up Custom Product Pages early** — 69% of top apps don't use CPPs yet; early adoption is a competitive advantage.
+8. **Plan In-App Events 2+ weeks ahead** — Apple requires review time; use event-calendar.md for seasonal planning.
+9. **Categorize keywords for organic vs paid** — keyword-list.md now includes Apple Search Ads readiness guidance.
+10. **Monitor your conversion funnel** — aso_scorer.py can diagnose bottlenecks at each stage (impressions → installs).
 
 ---
 

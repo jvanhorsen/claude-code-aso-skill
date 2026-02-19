@@ -90,7 +90,27 @@
 
 ---
 
-## Phase 6: Ongoing Optimization ({{PHASE6_START}}+)
+## Phase 6: In-App Events & CPP Setup ({{PHASE6_START}} – {{PHASE6_END}})
+
+### In-App Events (Apple)
+- [ ] Plan first 3 In-App Events using event_planner.py seasonal calendar
+- [ ] Generate event metadata (name ≤30, short desc ≤50, long desc ≤120 chars)
+- [ ] Select appropriate badge types (challenge, competition, live event, etc.)
+- [ ] Create event card assets (1920x1080 recommended)
+- [ ] Submit first event at least 2 weeks before start date
+- [ ] Set up Google Play Promotional Content equivalents
+
+### Custom Product Pages (Apple)
+- [ ] Identify top 3-5 CPP opportunities using cpp_planner.py
+- [ ] Create unique screenshots and promotional text per CPP
+- [ ] Validate CPP promotional text (≤170 chars each)
+- [ ] Submit CPPs for Apple review
+- [ ] Link CPPs to Apple Search Ads campaigns (if running ads)
+- [ ] Monitor CPP conversion rate vs default listing
+
+---
+
+## Phase 7: Ongoing Optimization ({{PHASE7_START}}+)
 
 ### Monthly Cadence
 - [ ] Review keyword rankings and adjust strategy
@@ -98,6 +118,8 @@
 - [ ] Update screenshots for seasonal relevance
 - [ ] Plan next A/B test iteration
 - [ ] Re-run ASO health score (target: +5 points/quarter)
+- [ ] Review In-App Event performance and plan next events
+- [ ] Analyze CPP conversion rates and optimize underperformers
 
 ---
 
@@ -112,6 +134,8 @@
 | Submitted for review | {{SUBMIT_DATE}} | ☐ |
 | Live in stores | {{LAUNCH_DATE}} | ☐ |
 | First A/B test results | {{FIRST_AB_RESULTS}} | ☐ |
+| First In-App Event live | {{FIRST_EVENT_DATE}} | ☐ |
+| CPPs submitted | {{CPP_SUBMIT_DATE}} | ☐ |
 
 ---
 

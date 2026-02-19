@@ -121,7 +121,32 @@ Cover:
 - **Screenshot Strategy**: Hero feature first, key benefits next, remaining features after
 - **Video Preview**: Apple 15-30s, Google 30s-2min, subtitled
 
-## 5. A/B Testing Strategy
+Use `metadata_optimizer.py`'s `generate_screenshot_strategy()` for platform-specific screenshot optimization guidance, first-3-screenshot framework, text overlay best practices, and app preview video recommendations.
+
+## 5. Custom Product Pages (Apple)
+
+### Deliverable: custom-product-pages.md (in `02-metadata/`)
+
+Apple allows up to 70 Custom Product Pages per app. As of July 2025, CPPs appear organically in App Store search results — not just from ad traffic. Average CVR lift: 5.9%.
+
+Use `cpp_planner.py` to:
+1. Identify CPP opportunities from keyword clusters, audience segments, features, and competitor gaps
+2. Generate promotional text variants per CPP (170 chars each)
+3. Define screenshot strategy per CPP (tailored to search intent)
+4. Prioritize CPPs by potential impact (start with top 5, expand based on data)
+
+For each recommended CPP, provide:
+- CPP name and theme
+- Target keywords it serves
+- Promotional text (170 chars, 2-3 variants for testing)
+- Screenshot guidance specific to this CPP's audience/intent
+- Success metrics (target CVR lift vs default listing)
+
+**CPP + Apple Search Ads integration:** Each CPP can be linked to ad campaigns for keyword-targeted paid traffic. Use the same CPP for both organic and paid discovery.
+
+Character limits for CPPs match the default listing (Promotional Text: 170 chars). Title, subtitle, and description are inherited — only screenshots, promo text, and app previews are unique per CPP.
+
+## 6. A/B Testing Strategy
 
 ### Deliverable: ab-test-setup.md
 
@@ -140,7 +165,7 @@ For each recommended test, provide:
 - Success metric (CVR) and significance threshold (95%)
 - Decision criteria
 
-## 6. Final Validation
+## 7. Final Validation
 
 Before completing, run this validation on all generated metadata:
 ```python

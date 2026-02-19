@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-purple.svg)
 ![Claude App](https://img.shields.io/badge/Claude_App-Compatible-orange.svg)
@@ -18,7 +18,7 @@
 
 ## Overview
 
-A production-ready multi-agent ASO system for **Claude Code** that generates **actionable, copy-paste ready deliverables** for Apple App Store and Google Play Store optimization. Real-time data via iTunes Search API, character-validated metadata, specific calendar dates, and executable checklists.
+A production-ready multi-agent ASO system for **Claude Code** that generates **actionable, copy-paste ready deliverables** for Apple App Store and Google Play Store optimization. Real-time data via iTunes Search API, character-validated metadata, Custom Product Pages (CPPs), In-App Events planning, visual asset optimization, Apple Search Ads strategy, category analysis, conversion funnel diagnosis, and executable checklists with specific calendar dates.
 
 **Two ways to use:**
 - **Claude Code CLI** — Full multi-agent system with automated workflows
@@ -45,7 +45,16 @@ A production-ready multi-agent ASO system for **Claude Code** that generates **a
 - **WebFetch Utilities** — Additional scraping for comprehensive analysis
 - **Character Validation** — Apple (30/30/170/100/4000) and Google (50/80/4000) limits enforced
 
-### Deliverables (11 files per audit)
+### v1.2 Enhancements
+
+- **Custom Product Pages (CPPs)** — Strategy, promotional text variants, priority scoring (5.9% avg CVR lift)
+- **In-App Events** — Seasonal calendar, event metadata generation, badge type recommendations
+- **Visual Asset Optimization** — Screenshot strategy framework, first-3-screenshot CVR optimization, text overlay guidelines
+- **Apple Search Ads Readiness** — Organic vs paid keyword strategy, CPP+Ads integration, budget framework
+- **Category Strategy** — Primary/secondary category optimization, competition density analysis
+- **Conversion Funnel Analysis** — Stage-by-stage diagnosis, bottleneck identification, benchmark comparison
+
+### Deliverables (13 files per audit)
 
 ```
 outputs/[YourApp]/
@@ -56,7 +65,8 @@ outputs/[YourApp]/
 ├── 02-metadata/
 │   ├── apple-metadata.md         # Copy-paste ready for App Store Connect
 │   ├── google-metadata.md        # Copy-paste ready for Play Console
-│   └── visual-assets-spec.md     # Icon/screenshot requirements
+│   ├── visual-assets-spec.md     # Icon/screenshot requirements
+│   └── custom-product-pages.md   # CPP strategy and specifications
 ├── 03-testing/
 │   └── ab-test-setup.md          # A/B test configuration
 ├── 04-launch/
@@ -64,7 +74,8 @@ outputs/[YourApp]/
 │   └── timeline.md               # Week-by-week with specific dates
 ├── 05-optimization/
 │   ├── review-responses.md       # Pre-written response templates
-│   └── ongoing-tasks.md          # Daily/weekly/monthly schedule
+│   ├── ongoing-tasks.md          # Daily/weekly/monthly schedule
+│   └── event-calendar.md         # In-App Events strategy and calendar
 └── FINAL-REPORT.md               # Executive summary
 ```
 
@@ -165,11 +176,11 @@ See the complete example for a fictional fitness app: **[FitFlow Example](output
 ## Architecture
 
 ```
-app-store-optimization/     # 8 Python modules + lib/ data fetching (single source of truth)
+app-store-optimization/     # 10 Python modules + lib/ data fetching (single source of truth)
 .claude/agents/aso/          # 4 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
 .claude/templates/           # 5 output templates
-outputs/[app-name]/          # Generated deliverables (11 files)
+outputs/[app-name]/          # Generated deliverables (13 files)
 ```
 
 See [ARCHITECTURE.md](.claude/ARCHITECTURE.md) for the full system design and data flow.
@@ -245,7 +256,7 @@ MIT License — see [LICENSE.md](LICENSE.md) for details.
 
 ## Status
 
-- **Current Version:** 1.1.0
+- **Current Version:** 1.2.0
 - **Status:** Production Ready
 - **Maintenance:** Actively maintained
 
@@ -259,14 +270,20 @@ MIT License — see [LICENSE.md](LICENSE.md) for details.
 
 ### Version 1.1 (February 2026)
 - [x] Architecture restructure — eliminated duplicates, principle-based agents, simplified outputs
-- [ ] iTunes Review API integration
-- [ ] Historical tracking database
-- [ ] Multi-language support
+
+### Version 1.2 (February 2026)
+- [x] Custom Product Pages (CPPs) — strategy module with opportunity identification and spec generation
+- [x] In-App Events — seasonal event calendar and metadata generation
+- [x] Visual asset optimization — screenshot strategy framework with CVR-focused first-3-screenshot guidance
+- [x] Apple Search Ads readiness — organic vs paid keyword strategy and budget framework
+- [x] Category strategy — primary/secondary category optimization and competition density analysis
+- [x] Conversion funnel analysis — stage-by-stage diagnosis with bottleneck identification
 
 ### Version 2.0 (Future)
 - [ ] Paid API integration (AppTweak, Sensor Tower)
+- [ ] Semantic keyword clustering
 - [ ] Web dashboard for tracking
-- [ ] Automated reporting
+- [ ] Multi-language expansion support
 
 ---
 

@@ -75,3 +75,60 @@
 - Google indexes full description for search ranking
 - Front-load keywords: first 167 chars appear in search results
 - Use emoji section breaks for readability (Google supports them)
+
+---
+
+## Screenshot Strategy
+
+### Feature Graphic (1024x500 — Required)
+
+**Design:**
+```
+{{FEATURE_GRAPHIC_DESCRIPTION}}
+```
+
+**Guidelines:**
+- Bold headline (3-5 words) communicating primary value
+- App icon prominently placed
+- Clean background with brand colors
+- Avoid fine text — it's displayed small on most surfaces
+
+---
+
+### Screenshot Sequence (Recommended: 6-8)
+
+| Position | Purpose | Headline Pattern |
+|----------|---------|-----------------|
+| 1 | Hero — Primary Value Proposition | [Verb] + [Desired Outcome] |
+| 2 | Key Differentiator | [Benefit] in [Timeframe/Ease] |
+| 3 | Social Proof / Wow Moment | [Number]+ [Social Proof] |
+| 4 | Secondary Feature | [Feature Benefit] |
+| 5 | Workflow / Process | [Action] → [Result] |
+| 6 | Customization / Settings | [Personalize] Your [Noun] |
+
+**First 3 screenshots are critical** — they appear in search results and drive 70% of conversion decisions.
+
+### Screenshot Specifications
+
+| Device | Size | Required |
+|--------|------|----------|
+| Phone | 1080x1920px (min) | ✅ |
+| 7" Tablet | 1080x1920px | Optional |
+| 10" Tablet | 1080x1920px | Optional |
+
+### Text Overlay Guidelines (Google)
+- Bold sans-serif fonts (Google Sans / Roboto)
+- Emoji in text overlays can improve engagement
+- Max 5-7 words per headline
+- High contrast text — readable at thumbnail size
+- Consistent visual branding across all screenshots
+
+### Promo Video
+
+**Specs:** 30 seconds - 2 minutes, YouTube link or direct upload
+**Structure:**
+1. **0-3s:** Hook — show most impressive result
+2. **3-15s:** Core use case walkthrough
+3. **15-30s+:** Additional features + CTA
+
+{{ADDITIONAL_SCREENSHOT_NOTES}}

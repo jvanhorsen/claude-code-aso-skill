@@ -105,7 +105,30 @@ Include response guidelines:
 
 Include escalation protocol: Critical (immediate) → High (4 hours) → Standard (24 hours).
 
-## 5. Ongoing Optimization Schedule
+## 5. In-App Events & Promotional Content Calendar
+
+### Deliverable: event-calendar.md (in `05-optimization/`)
+
+Use `event_planner.py` to create a seasonal event strategy:
+1. Plan 6-month event calendar with specific dates
+2. Generate event metadata (name 30 chars, short desc 50 chars, long desc 120 chars)
+3. Match event types to app category (challenge, competition, live event, major update, new season, premiere, special event)
+4. Align events with seasonal hooks (holidays, WWDC, back to school, etc.)
+
+For each planned event:
+- Event name and badge type
+- Start and end dates (events last up to 31 days)
+- Event metadata with character counts validated
+- Seasonal hook and marketing tie-in
+- Google Play Promotional Content equivalent guidance
+
+**Key constraints:**
+- Apple allows 10 events total, 5 published simultaneously
+- Events appear in App Store search results — this is a discovery tool
+- Schedule events at least 2 weeks before start for Apple review
+- Monitor event page views and impressions in App Store Connect
+
+## 6. Ongoing Optimization Schedule
 
 ### Deliverable: ongoing-tasks.md
 
@@ -143,16 +166,17 @@ Output: `overall_score` (0-100), per-category scores (metadata/ratings/keywords/
 
 Track score month-over-month to measure ASO improvement.
 
-## 6. Handoff
+## 7. Handoff
 
 After completing all deliverables, verify:
 - Timeline uses real calendar dates throughout
 - Checklist item count is accurate
 - Review templates have no placeholder app names
+- Event calendar has specific dates and validated character counts
 - Ongoing tasks have realistic time estimates
 - Files written to correct paths
 
-Summarize for aso-master: launch date, key milestones, checklist item count, total estimated work hours.
+Summarize for aso-master: launch date, key milestones, checklist item count, event count planned, total estimated work hours.
 
 </responsibilities>
 
