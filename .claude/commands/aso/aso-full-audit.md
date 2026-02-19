@@ -5,11 +5,18 @@ description: Complete ASO audit with keyword research, competitor intelligence, 
 
 # ASO Full Audit
 
-Run a comprehensive App Store Optimization audit producing 11 actionable deliverables.
+Run a comprehensive App Store Optimization audit producing 14 actionable deliverables.
 
 ## Agent
 
-Invokes **aso-master** orchestrator, which coordinates aso-research, aso-optimizer, and aso-strategist sequentially.
+Invokes **aso-master** orchestrator, which coordinates 5 specialist agents sequentially:
+1. **aso-research** — keyword + competitor data
+2. **aso-metadata** — Apple + Google metadata
+3. **aso-creative** — visual assets, CPPs, A/B tests
+4. **aso-launch** — pre-launch checklist + timeline
+5. **aso-ongoing** — review templates, events, ongoing tasks
+
+Progress updates are printed after each phase completes.
 
 ## Usage
 
@@ -29,11 +36,11 @@ aso-master will ask for:
 
 ## Output
 
-`outputs/[app-name]/` — 11 files across 5 phase folders. Start with `00-MASTER-ACTION-PLAN.md`.
+`outputs/[app-name]/` — 14 files across 5 phase folders. Start with `00-MASTER-ACTION-PLAN.md`.
 
 ## Time
 
-30-40 minutes (fully automated).
+30-40 minutes (fully automated, with progress updates after each phase).
 
 ## When to Use
 

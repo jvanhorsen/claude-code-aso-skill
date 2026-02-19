@@ -2,6 +2,19 @@
 
 All ASO agents follow this protocol. Agent-specific instructions override when conflicting.
 
+## Agent Roster
+
+| Agent | Role | Model | Files | Color |
+|-------|------|-------|-------|-------|
+| `aso-master` | Orchestrator — intake, coordination, heartbeat, synthesis | opus | 2 (master plan + final report) | purple |
+| `aso-research` | Keyword + competitor research via iTunes API | opus | 2 (keyword-list, competitor-gaps) | blue |
+| `aso-metadata` | Apple + Google metadata generation with validation | sonnet | 2 (apple-metadata, google-metadata) | green |
+| `aso-creative` | Visual assets, CPPs, A/B testing strategy | sonnet | 3 (visual-assets-spec, custom-product-pages, ab-test-setup) | cyan |
+| `aso-launch` | Pre-launch checklist + launch timeline | opus | 2 (prelaunch-checklist, timeline) | yellow |
+| `aso-ongoing` | Review templates, event calendar, ongoing tasks | opus | 3 (review-responses, event-calendar, ongoing-tasks) | orange |
+
+**Execution order:** research → metadata → creative → launch → ongoing → master (synthesis)
+
 ## User Context Priority
 
 Always prioritize information the user provides directly over fetched data or defaults.
@@ -21,6 +34,39 @@ Never create files in the project root.
 - `04-launch/prelaunch-checklist.md`, `04-launch/timeline.md`
 - `05-optimization/review-responses.md`, `05-optimization/ongoing-tasks.md`, `05-optimization/event-calendar.md`
 - `FINAL-REPORT.md`
+
+**File ownership by agent:**
+| Agent | Output Files |
+|-------|-------------|
+| aso-research | `01-research/keyword-list.md`, `01-research/competitor-gaps.md` |
+| aso-metadata | `02-metadata/apple-metadata.md`, `02-metadata/google-metadata.md` |
+| aso-creative | `02-metadata/visual-assets-spec.md`, `02-metadata/custom-product-pages.md`, `03-testing/ab-test-setup.md` |
+| aso-launch | `04-launch/prelaunch-checklist.md`, `04-launch/timeline.md` |
+| aso-ongoing | `05-optimization/review-responses.md`, `05-optimization/event-calendar.md`, `05-optimization/ongoing-tasks.md` |
+| aso-master | `00-MASTER-ACTION-PLAN.md`, `FINAL-REPORT.md` |
+
+## Heartbeat Protocol
+
+The orchestrator (aso-master) prints a structured progress update after each specialist agent completes. This keeps the user informed during long-running audits.
+
+**Format:**
+```
+═══════════════════════════════════════════════════════════
+  ASO AUDIT PROGRESS — [App Name]
+  Phase [N]/5 complete [█░ progress bar] [percent]%
+  Files: [completed]/14 complete
+═══════════════════════════════════════════════════════════
+  [status] Phase 1 — Research (2 files)
+     • [file details with key insight]
+  [status] Phase 2 — Metadata (2 files)
+     • [file details with key insight]
+  ...
+═══════════════════════════════════════════════════════════
+```
+
+**Status icons:** ✅ Complete | ⏳ Running | ⬚ Pending
+
+Each specialist agent should include a brief summary at the end of its work so aso-master can extract key insights for the heartbeat display.
 
 ## Platform Character Limits (Authoritative Reference)
 
@@ -97,7 +143,7 @@ Rate your output 1-5 on completeness and actionability. If below 4, improve befo
 
 **On start:** State what you're doing and estimated scope.
 **During work:** Report progress at each major milestone.
-**On complete:** Summarize deliverables with file paths.
+**On complete:** Summarize deliverables with file paths and key insights for heartbeat.
 **On error:** Explain what failed, what you tried, and suggest alternatives.
 
 ## Handoff Validation

@@ -7,6 +7,55 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.3.0] - 2026-02-19
+
+### Changed
+
+#### Agent Splitting (Turn Budget Fix)
+
+Real-world testing revealed that `aso-optimizer` (5 files) and `aso-strategist` (5 files) consistently exhausted their turn budgets before completing all output files. Root cause: too much work per agent, not a code or data problem.
+
+**Fix:** Split the two overloaded agents into focused specialists with max 3 files each:
+
+- `aso-optimizer` (5 files) split into:
+  - `aso-metadata` (sonnet) — Apple + Google metadata (2 files)
+  - `aso-creative` (sonnet) — visual assets, CPPs, A/B tests (3 files)
+
+- `aso-strategist` (5 files) split into:
+  - `aso-launch` (opus) — pre-launch checklist + timeline (2 files)
+  - `aso-ongoing` (opus) — review templates, events, ongoing tasks (3 files)
+
+#### Heartbeat Progress Mechanism
+
+Added structured progress updates printed by aso-master after each specialist agent completes. Users now see real-time feedback during 30-40 minute full audits:
+- ASCII progress bar (█░) with percentage
+- File completion count (e.g., "Files: 7/14 complete")
+- Key insight per completed file (title, keyword count, etc.)
+- Status icons: completed, in-progress, pending
+
+#### Slash Command Updates
+
+- `/aso-optimize` now invokes `aso-metadata` (was `aso-optimizer`), 3-5 min (was 5-7 min)
+- `/aso-prelaunch` now invokes `aso-launch` + `aso-ongoing` (was `aso-strategist`), 10-14 min (was 8-10 min)
+- `/aso-full-audit` references 5 specialist agents (was 3)
+
+### Removed
+
+- `aso-optimizer.md` — replaced by `aso-metadata.md` + `aso-creative.md`
+- `aso-strategist.md` — replaced by `aso-launch.md` + `aso-ongoing.md`
+
+### Net Impact
+
+| Category | v1.2 | v1.3 | Change |
+|----------|------|------|--------|
+| Agent definitions | 4 | 6 | +2 (split overloaded agents) |
+| Max files per specialist | 5 | 3 | -40% (prevents turn exhaustion) |
+| Output files per audit | 14 | 14 | unchanged |
+| Execution phases | 3 | 5 | +2 (finer granularity) |
+| User visibility | none | heartbeat after each phase | new |
+
+---
+
 ## [1.2.0] - 2026-02-19
 
 ### Added

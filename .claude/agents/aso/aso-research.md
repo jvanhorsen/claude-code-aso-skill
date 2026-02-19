@@ -133,7 +133,7 @@ For each primary keyword, assess:
 
 ### CPP + Apple Search Ads Synergy
 
-When Custom Product Pages exist (from aso-optimizer's `02-metadata/custom-product-pages.md`):
+When Custom Product Pages exist (from aso-creative's `02-metadata/custom-product-pages.md`):
 - Map each CPP to the keyword clusters it targets
 - Recommend linking specific CPPs to Apple Search Ads campaigns for those keywords
 - This delivers keyword-matched landing pages for paid traffic → higher conversion rate → lower cost per tap

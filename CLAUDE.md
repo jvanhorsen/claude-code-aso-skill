@@ -25,7 +25,7 @@ Single source of truth: `app-store-optimization/` (distributable skill package).
 
 ```
 app-store-optimization/     # 10 Python modules + lib/ data fetching
-.claude/agents/aso/          # 4 agent definitions + shared protocol
+.claude/agents/aso/          # 6 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
 .claude/templates/           # 5 output templates
 outputs/[app-name]/          # Generated deliverables (14 files)
@@ -67,26 +67,30 @@ These limits are enforced by agents via shared-protocol.md and validated in meta
 
 ## Agent System
 
-4 agents coordinated sequentially:
+6 agents coordinated sequentially (max 3 files per specialist to stay within turn budgets):
 
-| Agent | Role | Model |
-|-------|------|-------|
-| `aso-master` | Orchestrator — intake, coordination, synthesis | opus |
-| `aso-research` | Keyword + competitor research via iTunes API | opus |
-| `aso-optimizer` | Copy-paste metadata generation with validation | sonnet |
-| `aso-strategist` | Timelines, checklists, review templates | opus |
+| Agent | Role | Model | Files |
+|-------|------|-------|-------|
+| `aso-master` | Orchestrator — intake, coordination, heartbeat, synthesis | opus | 2 |
+| `aso-research` | Keyword + competitor research via iTunes API | opus | 2 |
+| `aso-metadata` | Copy-paste Apple + Google metadata with validation | sonnet | 2 |
+| `aso-creative` | Visual assets, Custom Product Pages, A/B testing | sonnet | 3 |
+| `aso-launch` | Pre-launch checklist + timeline with real dates | opus | 2 |
+| `aso-ongoing` | Review templates, In-App Events, ongoing tasks | opus | 3 |
 
-**Workflow:** aso-master → aso-research → aso-optimizer → aso-strategist → aso-master (synthesis)
+**Workflow:** aso-master → aso-research → aso-metadata → aso-creative → aso-launch → aso-ongoing → aso-master (synthesis)
 
-**Shared protocol:** `.claude/agents/aso/shared-protocol.md` — common rules all agents follow (output conventions, character limits reference, quality standards, communication patterns).
+**Heartbeat:** After each specialist completes, aso-master prints a structured progress update showing completed files, progress bar, and key insights from the work produced.
+
+**Shared protocol:** `.claude/agents/aso/shared-protocol.md` — common rules all agents follow (output conventions, character limits reference, quality standards, communication patterns, heartbeat format).
 
 ## Slash Commands
 
-| Command | Agent | Time |
-|---------|-------|------|
-| `/aso-full-audit [app]` | aso-master (all specialists) | 30-40 min |
-| `/aso-optimize [app]` | aso-optimizer directly | 5-7 min |
-| `/aso-prelaunch [app] [date]` | aso-strategist directly | 8-10 min |
+| Command | Agent(s) | Time |
+|---------|----------|------|
+| `/aso-full-audit [app]` | aso-master (all 5 specialists) | 30-40 min |
+| `/aso-optimize [app]` | aso-metadata directly | 3-5 min |
+| `/aso-prelaunch [app] [date]` | aso-launch + aso-ongoing | 10-14 min |
 | `/aso-competitor [app] [competitors]` | aso-research directly | 10-15 min |
 
 ## Output Structure (14 files)
@@ -130,7 +134,7 @@ outputs/[app-name]/
 - **Always validate character limits** — use platform constraints above
 - **Real calendar dates** — never "Week 1" placeholders
 - **Copy-paste ready outputs** — no additional formatting needed
-- **Sequential agent execution** — research → optimization → strategy (data dependencies)
+- **Sequential agent execution** — research → metadata → creative → launch → ongoing (data dependencies)
 - **All outputs** go to `outputs/[app-name]/`, never project root
 - **Read agent definitions** before modifying — they contain detailed protocols
 

@@ -5,11 +5,13 @@ description: Generate comprehensive pre-launch checklist and timeline with speci
 
 # ASO Pre-Launch
 
-Create a detailed pre-launch checklist and week-by-week timeline for app store submission.
+Create a detailed pre-launch checklist, launch timeline, review response templates, event calendar, and ongoing optimization schedule.
 
 ## Agent
 
-Invokes **aso-strategist** directly (skips research and metadata phases).
+Invokes two specialist agents sequentially:
+1. **aso-launch** — pre-launch checklist + week-by-week timeline
+2. **aso-ongoing** — review templates, event calendar, ongoing tasks
 
 ## Usage
 
@@ -32,11 +34,12 @@ Use `TBD` for launch-date if not yet decided — the agent will suggest a timeli
 - `prelaunch-checklist.md` — comprehensive validation checklist
 - `timeline.md` — week-by-week with specific calendar dates
 - `review-responses.md` — pre-written response templates
+- `event-calendar.md` — In-App Events with specific dates
 - `ongoing-tasks.md` — daily/weekly/monthly optimization schedule
 
 ## Time
 
-8-10 minutes.
+10-14 minutes.
 
 ## When to Use
 

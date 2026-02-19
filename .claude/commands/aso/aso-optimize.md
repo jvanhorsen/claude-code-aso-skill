@@ -9,7 +9,7 @@ Generate copy-paste ready app store metadata optimized for discoverability and c
 
 ## Agent
 
-Invokes **aso-optimizer** directly (skips research and strategy phases).
+Invokes **aso-metadata** directly (skips research, creative, and strategy phases).
 
 ## Usage
 
@@ -29,11 +29,10 @@ Invokes **aso-optimizer** directly (skips research and strategy phases).
 `outputs/[app-name]/02-metadata/` containing:
 - `apple-metadata.md` — copy-paste ready for App Store Connect
 - `google-metadata.md` — copy-paste ready for Play Console
-- `visual-assets-spec.md` — icon/screenshot requirements
 
 ## Time
 
-5-7 minutes.
+3-5 minutes.
 
 ## When to Use
 
@@ -41,3 +40,7 @@ Invokes **aso-optimizer** directly (skips research and strategy phases).
 - Quick optimization without full audit
 - Already have keywords, just need metadata written
 - Adding a second platform
+
+## Want More?
+
+Use `/aso-full-audit` for the complete package including visual asset specs, CPP strategy, A/B testing, launch planning, and ongoing optimization.

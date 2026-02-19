@@ -9,8 +9,8 @@
 
 ```
 User Request → Slash Command → aso-master (orchestrator)
-    → aso-research → aso-optimizer → aso-strategist
-    → Synthesis → outputs/[app-name]/
+    → aso-research → aso-metadata → aso-creative → aso-launch → aso-ongoing
+    → Synthesis + Heartbeat → outputs/[app-name]/
 ```
 
 Single source of truth: `app-store-optimization/` contains all Python modules and data fetching utilities. Agents reference this directory directly.
@@ -53,38 +53,46 @@ app-store-optimization/
 ```
 .claude/agents/aso/
 ├── shared-protocol.md            # Common rules for all agents
-├── aso-master.md                 # Orchestrator (opus)
+├── aso-master.md                 # Orchestrator + heartbeat (opus)
 ├── aso-research.md               # Research + data fetching (opus)
-├── aso-optimizer.md              # Metadata generation (sonnet)
-└── aso-strategist.md             # Strategy + timelines (opus)
+├── aso-metadata.md               # Apple + Google metadata (sonnet)
+├── aso-creative.md               # Visuals, CPPs, A/B testing (sonnet)
+├── aso-launch.md                 # Pre-launch checklist + timeline (opus)
+└── aso-ongoing.md                # Reviews, events, ongoing tasks (opus)
 ```
 
-**Workflow:**
+**Design principle:** Max 3 output files per specialist agent to prevent turn budget exhaustion.
+
+**Workflow (5 phases + heartbeat):**
 ```
-aso-master
+aso-master (intake)
     ↓
-Phase 1: aso-research
-    - Uses: app-store-optimization/keyword_analyzer.py
-    - Uses: app-store-optimization/competitor_analyzer.py
-    - Uses: app-store-optimization/aso_scorer.py (category analysis)
+Phase 1: aso-research (2 files)
+    - Uses: keyword_analyzer.py, competitor_analyzer.py, aso_scorer.py
     - Fetches: iTunes API data
     - Output: keyword-list.md, competitor-gaps.md
     - Includes: Apple Search Ads keyword categorization, category positioning
-    ↓
-Phase 2: aso-optimizer
-    - Uses: app-store-optimization/metadata_optimizer.py (metadata + visual strategy)
-    - Uses: app-store-optimization/ab_test_planner.py
-    - Uses: app-store-optimization/cpp_planner.py
-    - Output: apple-metadata.md, google-metadata.md, custom-product-pages.md
-    ↓
-Phase 3: aso-strategist
-    - Uses: app-store-optimization/aso_scorer.py (health + funnel)
-    - Uses: app-store-optimization/launch_checklist.py
-    - Uses: app-store-optimization/event_planner.py
-    - Output: timeline.md, prelaunch-checklist.md, event-calendar.md
-    ↓
+    ↓ heartbeat
+Phase 2: aso-metadata (2 files)
+    - Uses: metadata_optimizer.py
+    - Output: apple-metadata.md, google-metadata.md
+    ↓ heartbeat
+Phase 3: aso-creative (3 files)
+    - Uses: metadata_optimizer.py (visual strategy), cpp_planner.py, ab_test_planner.py
+    - Reads: apple-metadata.md, google-metadata.md (for final titles/keywords)
+    - Output: visual-assets-spec.md, custom-product-pages.md, ab-test-setup.md
+    ↓ heartbeat
+Phase 4: aso-launch (2 files)
+    - Uses: launch_checklist.py, aso_scorer.py (conversion funnel)
+    - Output: prelaunch-checklist.md, timeline.md
+    ↓ heartbeat
+Phase 5: aso-ongoing (3 files)
+    - Uses: event_planner.py, review_analyzer.py, aso_scorer.py
+    - Output: review-responses.md, event-calendar.md, ongoing-tasks.md
+    ↓ heartbeat
 aso-master (synthesis)
-    - Output: 00-MASTER-ACTION-PLAN.md (includes Apple Search Ads Readiness)
+    - Output: 00-MASTER-ACTION-PLAN.md, FINAL-REPORT.md
+    ↓ final heartbeat (14/14 files complete)
 ```
 
 ---
@@ -93,11 +101,11 @@ aso-master (synthesis)
 
 **Location:** `.claude/commands/aso/`
 
-| Command | Agent | Duration |
-|---------|-------|----------|
-| `/aso-full-audit [app]` | aso-master (all 3 specialists) | 30-40 min |
-| `/aso-optimize [app]` | aso-optimizer | 5-7 min |
-| `/aso-prelaunch [app] [date]` | aso-strategist | 8-10 min |
+| Command | Agent(s) | Duration |
+|---------|----------|----------|
+| `/aso-full-audit [app]` | aso-master (all 5 specialists) | 30-40 min |
+| `/aso-optimize [app]` | aso-metadata | 3-5 min |
+| `/aso-prelaunch [app] [date]` | aso-launch + aso-ongoing | 10-14 min |
 | `/aso-competitor [app] [competitors]` | aso-research | 10-15 min |
 
 ---
@@ -154,40 +162,55 @@ outputs/[app-name]/
 ┌────────────────────────────────────────────────┐
 │ aso-master (Orchestrator)                      │
 │ - Gathers app details from user                │
-│ - Invokes specialist agents sequentially       │
+│ - Invokes 5 specialists sequentially           │
+│ - Prints heartbeat after each phase            │
 └────────┬───────────────────────────────────────┘
          ↓
 ┌────────────────────────────────────────────────┐
-│ Phase 1: aso-research                          │
+│ Phase 1: aso-research (2 files)                │
 │ iTunes API → keyword_analyzer.py               │
 │ iTunes API → competitor_analyzer.py            │
 │ aso_scorer.py → category analysis              │
 │ → outputs/[app]/01-research/                   │
-│ (incl. Apple Search Ads keyword strategy)      │
 └────────┬───────────────────────────────────────┘
-         ↓
+         ↓ heartbeat (2/14 files)
 ┌────────────────────────────────────────────────┐
-│ Phase 2: aso-optimizer                         │
+│ Phase 2: aso-metadata (2 files)                │
 │ Keywords from Phase 1 → metadata_optimizer.py  │
+│ → outputs/[app]/02-metadata/                   │
+│   (apple-metadata.md, google-metadata.md)      │
+└────────┬───────────────────────────────────────┘
+         ↓ heartbeat (4/14 files)
+┌────────────────────────────────────────────────┐
+│ Phase 3: aso-creative (3 files)                │
 │ metadata_optimizer.py → screenshot strategy    │
 │ cpp_planner.py → Custom Product Pages          │
-│ → outputs/[app]/02-metadata/                   │
+│ ab_test_planner.py → A/B test setup            │
+│ → outputs/[app]/02-metadata/ (visuals, CPPs)   │
+│ → outputs/[app]/03-testing/ (A/B tests)        │
 └────────┬───────────────────────────────────────┘
-         ↓
+         ↓ heartbeat (7/14 files)
 ┌────────────────────────────────────────────────┐
-│ Phase 3: aso-strategist                        │
-│ All prior outputs → aso_scorer.py              │
+│ Phase 4: aso-launch (2 files)                  │
+│ All prior outputs → launch_checklist.py        │
 │ aso_scorer.py → conversion funnel analysis     │
-│ event_planner.py → In-App Events calendar      │
 │ → outputs/[app]/04-launch/                     │
+└────────┬───────────────────────────────────────┘
+         ↓ heartbeat (9/14 files)
+┌────────────────────────────────────────────────┐
+│ Phase 5: aso-ongoing (3 files)                 │
+│ event_planner.py → In-App Events calendar      │
+│ review_analyzer.py → review templates          │
+│ aso_scorer.py → ongoing schedule               │
 │ → outputs/[app]/05-optimization/               │
 └────────┬───────────────────────────────────────┘
-         ↓
+         ↓ heartbeat (12/14 files)
 ┌────────────────────────────────────────────────┐
 │ aso-master (Synthesis)                         │
 │ → outputs/[app]/00-MASTER-ACTION-PLAN.md       │
 │ → outputs/[app]/FINAL-REPORT.md                │
 └────────────────────────────────────────────────┘
+  ↓ final heartbeat (14/14 files ████████████████)
 ```
 
 ---
