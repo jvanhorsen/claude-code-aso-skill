@@ -9,10 +9,11 @@ A **Claude Code skill + agent system** for App Store Optimization (ASO). Provide
 ## Quick Start
 
 ```bash
-# Install agents (user-level)
-cp .claude/agents/aso/*.md ~/.claude/agents/
+# Install from GitHub
+/install jvanhorsen/claude-code-aso-skill
 
-# Install slash commands
+# Or clone + copy for full agent system
+cp .claude/agents/aso/*.md ~/.claude/agents/
 cp .claude/commands/aso/*.md ~/.claude/commands/
 
 # Run a full audit

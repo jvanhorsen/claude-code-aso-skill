@@ -10,9 +10,17 @@
 
 ## Installation
 
-### Method A: Clone + Copy (Recommended)
+### Method A: Install from GitHub
 
-Full multi-agent system with agents, slash commands, and all capabilities:
+Install the skill directly in Claude Code:
+
+```
+/install jvanhorsen/claude-code-aso-skill
+```
+
+### Method B: Clone + Copy (Full Multi-Agent System)
+
+For access to agents, slash commands, and the complete multi-agent system:
 
 #### Step 1: Clone the Repository
 
@@ -50,7 +58,7 @@ ls ~/.claude/commands/aso/
 
 Restart Claude Code after installation for agents and commands to appear.
 
-### Method B: Manual Skill Installation
+### Method C: Manual Skill Installation
 
 For standalone skill usage without the agent system:
 

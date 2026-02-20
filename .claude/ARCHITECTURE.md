@@ -239,10 +239,11 @@ competitors = api.compare_competitors(["Todoist", "Any.do", "Microsoft To Do"])
 ## Installation
 
 ```bash
-# Install agents
-cp .claude/agents/aso/*.md ~/.claude/agents/
+# Install from GitHub
+/install jvanhorsen/claude-code-aso-skill
 
-# Install commands
+# Or clone + copy
+cp .claude/agents/aso/*.md ~/.claude/agents/
 cp .claude/commands/aso/*.md ~/.claude/commands/
 
 # Use
