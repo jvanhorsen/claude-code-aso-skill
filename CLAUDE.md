@@ -9,12 +9,10 @@ A **Claude Code skill + agent system** for App Store Optimization (ASO). Provide
 ## Quick Start
 
 ```bash
-# Plugin install (recommended)
-/plugin marketplace add jvanhorsen/claude-code-aso-skill
-/plugin install app-store-optimization@aso-skill-marketplace
-
-# Or clone + copy for full agent system
+# Install agents (user-level)
 cp .claude/agents/aso/*.md ~/.claude/agents/
+
+# Install slash commands
 cp .claude/commands/aso/*.md ~/.claude/commands/
 
 # Run a full audit
@@ -30,7 +28,7 @@ app-store-optimization/     # 10 Python modules + lib/ data fetching
 .claude/agents/aso/          # 6 agent definitions + shared protocol
 .claude/commands/aso/        # 4 slash commands (thin wrappers)
 .claude/templates/           # 6 output templates
-.claude-plugin/              # Plugin manifests for owner/repo install
+.claude-plugin/              # Plugin manifests for marketplace distribution
 outputs/[app-name]/          # Generated deliverables (15 files)
 ```
 

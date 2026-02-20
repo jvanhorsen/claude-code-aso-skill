@@ -10,23 +10,9 @@
 
 ## Installation
 
-### Method A: Plugin Install (Recommended)
+### Method A: Clone + Copy (Recommended)
 
-The fastest way to install — directly from GitHub:
-
-```bash
-# Add the marketplace
-/plugin marketplace add jvanhorsen/claude-code-aso-skill
-
-# Install the skill
-/plugin install app-store-optimization@aso-skill-marketplace
-```
-
-This installs the skill so Claude can use it for ASO tasks automatically.
-
-### Method B: Clone + Copy (Full Multi-Agent System)
-
-For access to agents, slash commands, and the complete multi-agent system:
+Full multi-agent system with agents, slash commands, and all capabilities:
 
 #### Step 1: Clone the Repository
 
@@ -64,7 +50,7 @@ ls ~/.claude/commands/aso/
 
 Restart Claude Code after installation for agents and commands to appear.
 
-### Method C: Manual Skill Installation
+### Method B: Manual Skill Installation
 
 For standalone skill usage without the agent system:
 
@@ -290,9 +276,6 @@ pandoc outputs/MyApp/PLAYBOOK.md -o ASO-Playbook-MyApp.pdf \
 
 ## Updating
 
-**Plugin install:** The plugin system handles updates automatically when the marketplace is refreshed.
-
-**Clone + Copy install:**
 ```bash
 cd claude-code-aso-skill
 git pull
@@ -301,13 +284,6 @@ cp .claude/commands/aso/*.md ~/.claude/commands/aso/
 ```
 
 ## Uninstalling
-
-**Plugin install:**
-```bash
-/plugin uninstall app-store-optimization@aso-skill-marketplace
-```
-
-**Clone + Copy install:**
 ```bash
 rm ~/.claude/agents/aso-*.md ~/.claude/agents/shared-protocol.md
 rm -rf ~/.claude/commands/aso/

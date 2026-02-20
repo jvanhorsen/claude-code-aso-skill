@@ -97,21 +97,9 @@ outputs/[YourApp]/
 
 ## Installation
 
-### Option 1: Plugin Install (Recommended)
+### Option 1: Clone + Copy (Recommended)
 
-Install directly from GitHub using Claude Code's plugin system:
-
-```bash
-# Add the marketplace
-/plugin marketplace add jvanhorsen/claude-code-aso-skill
-
-# Install the skill
-/plugin install app-store-optimization@aso-skill-marketplace
-```
-
-### Option 2: Clone + Copy (Full Multi-Agent System)
-
-For access to agents, slash commands, and the complete system:
+Full multi-agent system with agents, slash commands, and all capabilities:
 
 ```bash
 # Clone repository
@@ -130,7 +118,7 @@ ls ~/.claude/agents/aso-*  # 6 agent files
 ls ~/.claude/commands/aso/  # 4 command files
 ```
 
-### Option 3: Manual Skill Installation
+### Option 2: Manual Skill Installation
 
 ```bash
 git clone https://github.com/jvanhorsen/claude-code-aso-skill.git

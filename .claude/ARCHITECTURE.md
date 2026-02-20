@@ -239,12 +239,10 @@ competitors = api.compare_competitors(["Todoist", "Any.do", "Microsoft To Do"])
 ## Installation
 
 ```bash
-# Plugin install (recommended)
-/plugin marketplace add jvanhorsen/claude-code-aso-skill
-/plugin install app-store-optimization@aso-skill-marketplace
-
-# Or clone + copy
+# Install agents
 cp .claude/agents/aso/*.md ~/.claude/agents/
+
+# Install commands
 cp .claude/commands/aso/*.md ~/.claude/commands/
 
 # Use
