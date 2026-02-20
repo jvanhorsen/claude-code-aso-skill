@@ -4,38 +4,38 @@
 # See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # Default owner for everything in the repo
-* @alirezarezvani
+* @jvanhorsen
 
 # ASO Skill Core Modules
-/app-store-optimization/*.py @alirezarezvani
-/app-store-optimization/lib/*.py @alirezarezvani
+/app-store-optimization/*.py @jvanhorsen
+/app-store-optimization/lib/*.py @jvanhorsen
 
 # ASO Agents
-/.claude/agents/aso/*.md @alirezarezvani
-/.claude/commands/aso/*.md @alirezarezvani
+/.claude/agents/aso/*.md @jvanhorsen
+/.claude/commands/aso/*.md @jvanhorsen
 
 
 # GitHub Workflows (Critical)
-/.github/workflows/ @alirezarezvani
+/.github/workflows/ @jvanhorsen
 
 # Community Files
-/.github/ISSUE_TEMPLATE/ @alirezarezvani
-/.github/PULL_REQUEST_TEMPLATE.md @alirezarezvani
-/.github/CONTRIBUTING.md @alirezarezvani
-/.github/CODE_OF_CONDUCT.md @alirezarezvani
-/.github/SECURITY.md @alirezarezvani
-/.github/CODEOWNERS @alirezarezvani
+/.github/ISSUE_TEMPLATE/ @jvanhorsen
+/.github/PULL_REQUEST_TEMPLATE.md @jvanhorsen
+/.github/CONTRIBUTING.md @jvanhorsen
+/.github/CODE_OF_CONDUCT.md @jvanhorsen
+/.github/SECURITY.md @jvanhorsen
+/.github/CODEOWNERS @jvanhorsen
 
 # Configuration Files
-/pyproject.toml @alirezarezvani
-/.github/dependabot.yml @alirezarezvani
+/pyproject.toml @jvanhorsen
+/.github/dependabot.yml @jvanhorsen
 
 # Documentation
-/README.md @alirezarezvani
-/CLAUDE.md @alirezarezvani
-/CHANGELOG.md @alirezarezvani
-/LICENSE.md @alirezarezvani
-/documentation/ @alirezarezvani
+/README.md @jvanhorsen
+/CLAUDE.md @jvanhorsen
+/CHANGELOG.md @jvanhorsen
+/LICENSE.md @jvanhorsen
+/documentation/ @jvanhorsen
 
 # Distributed Package
-/app-store-optimization.zip @alirezarezvani
+/app-store-optimization.zip @jvanhorsen

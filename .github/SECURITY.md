@@ -6,8 +6,8 @@ We actively support the following versions of the ASO skill with security update
 
 | Version | Supported          | Python Compatibility |
 | ------- | ------------------ | -------------------- |
-| 1.x.x   | :white_check_mark: | 3.8+                 |
-| < 1.0   | :x:                | -                    |
+| 1.4.x   | :white_check_mark: | 3.7+                 |
+| < 1.4   | :x:                | -                    |
 
 ## Security Best Practices
 
@@ -16,14 +16,14 @@ We actively support the following versions of the ASO skill with security update
 **Installation Security:**
 ```bash
 # ALWAYS verify repository authenticity before installation
-# Official repository: https://github.com/alirezarezvani/claude-code-aso-skill
+# Official repository: https://github.com/jvanhorsen/claude-code-aso-skill
 
 # Install only from trusted sources
 cp -r app-store-optimization ~/.claude/skills/
 
 # Verify installation
 ls ~/.claude/skills/app-store-optimization/
-# Should show: SKILL.md, 8 Python modules, sample files
+# Should show: SKILL.md, 10 Python modules, lib/ directory
 ```
 
 **API Key Security:**
@@ -85,12 +85,12 @@ ls ~/.claude/skills/app-store-optimization/
 Instead, report security issues privately:
 
 1. **GitHub Security Advisories** (Preferred):
-   - Go to: https://github.com/alirezarezvani/claude-code-aso-skill/security/advisories
+   - Go to: https://github.com/jvanhorsen/claude-code-aso-skill/security/advisories
    - Click "New draft security advisory"
    - Provide detailed information
 
 2. **Direct Email**:
-   - Email: [INSERT SECURITY EMAIL]
+   - Report via [GitHub Issues](https://github.com/jvanhorsen/claude-code-aso-skill/issues) with the label "security"
    - Subject: "[SECURITY] ASO Skill Vulnerability Report"
    - Include: Detailed description, reproduction steps, impact assessment
 
@@ -158,7 +158,7 @@ All code changes undergo:
 
 ### No Known Vulnerabilities
 
-As of November 7, 2025:
+As of February 19, 2026:
 - ✅ No external dependencies (minimal attack surface)
 - ✅ No hardcoded credentials
 - ✅ No known CVEs
@@ -179,7 +179,7 @@ Security updates are communicated through:
 
 ```bash
 # Watch repository for security advisories
-# Go to: https://github.com/alirezarezvani/claude-code-aso-skill
+# Go to: https://github.com/jvanhorsen/claude-code-aso-skill
 # Click "Watch" → "Custom" → Check "Security alerts"
 
 # Or subscribe to release notifications
@@ -237,4 +237,4 @@ We appreciate security researchers who help keep the ASO skill secure. With your
 
 **Questions?** Contact us via GitHub Security Advisories or email.
 
-**Last Updated:** November 7, 2025
+**Last Updated:** February 19, 2026

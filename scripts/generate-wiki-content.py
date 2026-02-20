@@ -247,7 +247,7 @@ Keywords are case-insensitive and normalized. The skill automatically handles:
 
 ### How do I report a bug?
 
-1. Go to [Issues](https://github.com/alirezarezvani/claude-code-aso-skill/issues)
+1. Go to [Issues](https://github.com/jvanhorsen/claude-code-aso-skill/issues)
 2. Use the Bug Report template
 3. Include module, platform, and reproduction steps
 
@@ -259,17 +259,17 @@ Yes! Add new .py files to `app-store-optimization/` following the same structure
 
 ### How do I contribute?
 
-See [Contributing Guide](https://github.com/alirezarezvani/claude-code-aso-skill/blob/main/.github/CONTRIBUTING.md)
+See [Contributing Guide](https://github.com/jvanhorsen/claude-code-aso-skill/blob/main/.github/CONTRIBUTING.md)
 
 ### Is there a community?
 
-- [GitHub Discussions](https://github.com/alirezarezvani/claude-code-aso-skill/discussions)
-- [Issue Tracker](https://github.com/alirezarezvani/claude-code-aso-skill/issues)
-- [Wiki](https://github.com/alirezarezvani/claude-code-aso-skill/wiki)
+- [GitHub Discussions](https://github.com/jvanhorsen/claude-code-aso-skill/discussions)
+- [Issue Tracker](https://github.com/jvanhorsen/claude-code-aso-skill/issues)
+- [Wiki](https://github.com/jvanhorsen/claude-code-aso-skill/wiki)
 
 ---
 
-**More questions?** Open a [GitHub Discussion](https://github.com/alirezarezvani/claude-code-aso-skill/discussions)
+**More questions?** Open a [GitHub Discussion](https://github.com/jvanhorsen/claude-code-aso-skill/discussions)
 """
     return faq
 

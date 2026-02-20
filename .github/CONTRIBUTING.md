@@ -294,10 +294,10 @@ python -m py_compile app-store-optimization/*.py
 
 ## Getting Help
 
-- **Questions:** [GitHub Discussions](https://github.com/alirezarezvani/claude-code-aso-skill/discussions)
-- **Bugs:** [Bug Report template](https://github.com/alirezarezvani/claude-code-aso-skill/issues/new/choose)
-- **Features:** [Feature Request template](https://github.com/alirezarezvani/claude-code-aso-skill/issues/new/choose)
-- **Docs:** [GitHub Wiki](https://github.com/alirezarezvani/claude-code-aso-skill/wiki)
+- **Questions:** [GitHub Discussions](https://github.com/jvanhorsen/claude-code-aso-skill/discussions)
+- **Bugs:** [Bug Report template](https://github.com/jvanhorsen/claude-code-aso-skill/issues/new/choose)
+- **Features:** [Feature Request template](https://github.com/jvanhorsen/claude-code-aso-skill/issues/new/choose)
+- **Docs:** [GitHub Wiki](https://github.com/jvanhorsen/claude-code-aso-skill/wiki)
 
 ## License
 
@@ -309,4 +309,4 @@ Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ---
 
-**Questions?** Open a [discussion](https://github.com/alirezarezvani/claude-code-aso-skill/discussions) or comment on an issue.
+**Questions?** Open a [discussion](https://github.com/jvanhorsen/claude-code-aso-skill/discussions) or comment on an issue.

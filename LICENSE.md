@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2025 Alireza Rezvani
+Copyright (c) 2025-2026 Joshua Van Horsen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -104,9 +104,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 ## Questions?
 
 For licensing questions, please open an issue on GitHub:
-https://github.com/alirezarezvani/claude-code-aso-skill/issues
+https://github.com/jvanhorsen/claude-code-aso-skill/issues
 
 ---
 
-**Last Updated:** November 7, 2025
-**Version:** 1.0.0
+**Last Updated:** February 19, 2026
+**Version:** 1.4.1

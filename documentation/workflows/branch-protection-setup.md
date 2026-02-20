@@ -48,7 +48,7 @@ git push -u origin dev
 
 ### Navigate to Branch Protection Settings
 
-1. Go to: `https://github.com/alirezarezvani/claude-code-aso-skill/settings/branches`
+1. Go to: `https://github.com/jvanhorsen/claude-code-aso-skill/settings/branches`
 2. Click **"Add branch protection rule"**
 3. **Branch name pattern:** `dev`
 
@@ -89,7 +89,7 @@ git push -u origin dev
 
 ### Navigate to Branch Protection Settings
 
-1. Go to: `https://github.com/alirezarezvani/claude-code-aso-skill/settings/branches`
+1. Go to: `https://github.com/jvanhorsen/claude-code-aso-skill/settings/branches`
 2. Click **"Add branch protection rule"**
 3. **Branch name pattern:** `main`
 
@@ -161,7 +161,7 @@ gh pr create --base main --title "Test: Invalid PR"
 
 ### GitHub Secrets Configuration
 
-1. Go to: `https://github.com/alirezarezvani/claude-code-aso-skill/settings/secrets/actions`
+1. Go to: `https://github.com/jvanhorsen/claude-code-aso-skill/settings/secrets/actions`
 2. Add the following secrets:
 
 **CLAUDE_CODE_OAUTH_TOKEN** (Required)
@@ -178,7 +178,7 @@ gh pr create --base main --title "Test: Invalid PR"
 
 For community feedback and ideas integration:
 
-1. Go to: `https://github.com/alirezarezvani/claude-code-aso-skill/settings`
+1. Go to: `https://github.com/jvanhorsen/claude-code-aso-skill/settings`
 2. Scroll to **Features**
 3. Enable **Discussions**
 
@@ -188,7 +188,7 @@ For community feedback and ideas integration:
 
 For automatic Wiki synchronization:
 
-1. Go to: `https://github.com/alirezarezvani/claude-code-aso-skill/settings`
+1. Go to: `https://github.com/jvanhorsen/claude-code-aso-skill/settings`
 2. Scroll to **Features**
 3. Enable **Wikis**
 
@@ -347,4 +347,4 @@ Branch protection can be adjusted based on team size and velocity:
 
 ---
 
-**Questions?** Open a [GitHub Discussion](https://github.com/alirezarezvani/claude-code-aso-skill/discussions)
+**Questions?** Open a [GitHub Discussion](https://github.com/jvanhorsen/claude-code-aso-skill/discussions)

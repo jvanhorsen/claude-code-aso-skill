@@ -10,13 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.4.1] - 2026-02-19
 
 ### Added
-- **Plugin system support** — `.claude-plugin/marketplace.json` and `plugin.json` manifests enable installation via `owner/repo` syntax: `/plugin marketplace add jvanhorsen/claude-code-aso-skill`
+- **Plugin system support** — `.claude-plugin/marketplace.json` and `plugin.json` manifests enable installation via `owner/repo` syntax: `/install jvanhorsen/claude-code-aso-skill`
 - **SKILL.md trigger phrases** — frontmatter description now includes "when to use it" triggers per Anthropic's skill best practices
 
 ### Changed
-- Installation docs updated across README.md, USAGE.md, CLAUDE.md, and ARCHITECTURE.md — plugin install is now the recommended primary method
+- Installation docs updated across README.md, USAGE.md, CLAUDE.md, and ARCHITECTURE.md — `/install` from GitHub is now the recommended primary method
 - SKILL.md frontmatter enhanced with `license`, `metadata` (author, version, repository) fields
 - Removed `app-store-optimization/README.md` per Anthropic convention (all skill documentation in SKILL.md)
+- **Full attribution update** — LICENSE.md copyright, pyproject.toml author/maintainer, CODEOWNERS, dependabot.yml, issue templates, security policy, contributing guide, and all documentation URLs now reflect Joshua Van Horsen / jvanhorsen
+- Filled placeholder contact info in CODE_OF_CONDUCT.md and SECURITY.md
+- Updated version references across LICENSE.md (`1.4.1`), SECURITY.md (supported versions, dates), pyproject.toml (`1.4.1`)
 
 ---
 

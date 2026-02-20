@@ -17,7 +17,7 @@ updates:
       - "dependencies"
       - "github-actions"
     reviewers:
-      - "alirezarezvani"
+      - "jvanhorsen"
     open-pull-requests-limit: 5
     target-branch: "dev"
 
@@ -39,7 +39,7 @@ updates:
       - "dependencies"
       - "python"
     reviewers:
-      - "alirezarezvani"
+      - "jvanhorsen"
     open-pull-requests-limit: 5
     target-branch: "dev"
     # Group all patch updates into a single PR

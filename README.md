@@ -239,7 +239,7 @@ python3 metadata_optimizer.py
 
 ## Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contributions welcome! See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines.
 
 ### Areas for Contribution
 

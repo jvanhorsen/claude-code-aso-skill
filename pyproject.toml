@@ -4,15 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "claude-code-aso-skill"
-version = "1.0.0"
+version = "1.4.1"
 description = "Comprehensive App Store Optimization (ASO) skill for Claude Code with multi-agent system"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Alireza Rezvani", email = "github@alirezarezvani.com"}
+    {name = "Joshua Van Horsen"}
 ]
 maintainers = [
-    {name = "Alireza Rezvani", email = "github@alirezarezvani.com"}
+    {name = "Joshua Van Horsen"}
 ]
 keywords = [
     "aso",
@@ -38,7 +38,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.7"
 
 # No external dependencies - standard library only
 dependencies = []
@@ -50,11 +50,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/alirezarezvani/claude-code-aso-skill"
-Documentation = "https://github.com/alirezarezvani/claude-code-aso-skill/wiki"
-Repository = "https://github.com/alirezarezvani/claude-code-aso-skill"
-Issues = "https://github.com/alirezarezvani/claude-code-aso-skill/issues"
-Changelog = "https://github.com/alirezarezvani/claude-code-aso-skill/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/jvanhorsen/claude-code-aso-skill"
+Documentation = "https://github.com/jvanhorsen/claude-code-aso-skill/wiki"
+Repository = "https://github.com/jvanhorsen/claude-code-aso-skill"
+Issues = "https://github.com/jvanhorsen/claude-code-aso-skill/issues"
+Changelog = "https://github.com/jvanhorsen/claude-code-aso-skill/blob/main/CHANGELOG.md"
 
 [tool.ruff]
 # Target Python 3.8+ for backward compatibility
