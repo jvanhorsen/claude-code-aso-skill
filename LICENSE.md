@@ -97,7 +97,7 @@ This software may be used for commercial purposes under the MIT License terms. H
 
 By contributing to this project, you agree that your contributions will be licensed under the same MIT License.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for contribution guidelines.
 
 ---
 
