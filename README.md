@@ -10,7 +10,7 @@
 
 **Professional App Store Optimization powered by AI agents**
 
-[Features](#-features) | [Installation](#-installation) | [Quick Start](#-quick-start) | [Documentation](#-documentation) | [Examples](#-example-outputs)
+[Features](#features) | [Installation](#installation) | [Quick Start](#quick-start) | [Documentation](#documentation) | [Examples](#example-outputs)
 
 </div>
 
