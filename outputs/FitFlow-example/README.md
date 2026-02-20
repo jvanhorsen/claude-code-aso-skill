@@ -28,7 +28,7 @@ Additional files would be generated in a full workflow:
 - `05-optimization/review-responses.md`, `ongoing-tasks.md`
 - `FINAL-REPORT.md`
 
-See `outputs/README.md` for the complete 11-file structure.
+See `outputs/README.md` for the complete 15-file structure.
 
 ---
 

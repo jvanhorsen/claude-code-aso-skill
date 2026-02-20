@@ -17,7 +17,8 @@ outputs/[AppName]/
 ├── 02-metadata/
 │   ├── apple-metadata.md           # Copy-paste ready for App Store Connect
 │   ├── google-metadata.md          # Copy-paste ready for Play Console
-│   └── visual-assets-spec.md       # Icon/screenshot requirements
+│   ├── visual-assets-spec.md       # Icon/screenshot requirements
+│   └── custom-product-pages.md     # CPP strategy and specifications
 ├── 03-testing/
 │   └── ab-test-setup.md            # Step-by-step A/B test configuration
 ├── 04-launch/
@@ -25,11 +26,13 @@ outputs/[AppName]/
 │   └── timeline.md                 # Week-by-week with specific dates
 ├── 05-optimization/
 │   ├── review-responses.md         # Pre-written response templates
-│   └── ongoing-tasks.md            # Daily/weekly/monthly schedule
-└── FINAL-REPORT.md                 # Executive summary
+│   ├── ongoing-tasks.md            # Daily/weekly/monthly schedule
+│   └── event-calendar.md           # In-App Events strategy and calendar
+├── FINAL-REPORT.md                 # Executive summary
+└── PLAYBOOK.md                     # Presentation-ready ASO strategy (PDF-exportable)
 ```
 
-**11 files total.** The master action plan consolidates all per-phase tasks into a single checklist.
+**15 files total.** The master action plan consolidates all per-phase tasks into a single checklist.
 
 ---
 
@@ -47,9 +50,9 @@ outputs/[AppName]/
 
 | Command | Output | Time |
 |---------|--------|------|
-| `/aso-full-audit AppName` | Full structure (11 files) | 30-40 min |
-| `/aso-optimize AppName` | `02-metadata/` only | 5-7 min |
-| `/aso-prelaunch AppName` | `04-launch/` + `05-optimization/` | 8-10 min |
+| `/aso-full-audit AppName` | Full structure (15 files) | 30-40 min |
+| `/aso-optimize AppName` | `02-metadata/` only | 3-5 min |
+| `/aso-prelaunch AppName` | `04-launch/` + `05-optimization/` | 10-14 min |
 | `/aso-competitor AppName` | `01-research/` only | 10-15 min |
 
 ---
@@ -67,4 +70,4 @@ All outputs meet these standards:
 
 ## Example
 
-See `outputs/FitFlow-example/` for a complete example with all 11 files.
+See `outputs/FitFlow-example/` for a complete example demonstrating quality standards.

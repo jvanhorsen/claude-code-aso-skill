@@ -75,8 +75,10 @@ Welcome to the comprehensive ASO (App Store Optimization) Skill documentation!
 - [Agent Overview](ASO-Agents)
 - [aso-master](ASO-Agent-Master)
 - [aso-research](ASO-Agent-Research)
-- [aso-optimizer](ASO-Agent-Optimizer)
-- [aso-strategist](ASO-Agent-Strategist)
+- [aso-metadata](ASO-Agent-Metadata)
+- [aso-creative](ASO-Agent-Creative)
+- [aso-launch](ASO-Agent-Launch)
+- [aso-ongoing](ASO-Agent-Ongoing)
 
 ### Reference
 - [API Documentation](API-Reference)
@@ -91,7 +93,7 @@ Welcome to the comprehensive ASO (App Store Optimization) Skill documentation!
 
 ---
 
-**Version:** 1.0.0 | **Updated:** $(date +"%B %d, %Y")
+**Version:** 1.4.1 | **Updated:** $(date +"%B %d, %Y")
           EOF
 
           # Extract sections from README for Installation and Quick Start
@@ -150,11 +152,9 @@ Welcome to the comprehensive ASO (App Store Optimization) Skill documentation!
 
 All ASO skill modules automatically validate character limits:
 
-```python
-from app-store-optimization.metadata_optimizer import optimize_title
-
-# Automatically truncates/optimizes to platform limit
-title = optimize_title("My Super Long App Name", platform="apple", max_length=30)
+```bash
+# Run module directly to verify installation
+python app-store-optimization/lib/itunes_api.py
 ```
 
 **Last Updated:** $(date +"%B %d, %Y")

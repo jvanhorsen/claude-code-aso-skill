@@ -100,6 +100,8 @@ def generate_api_reference():
         ("localization_helper.py", "Localization"),
         ("review_analyzer.py", "Review Analysis"),
         ("launch_checklist.py", "Launch Checklist"),
+        ("cpp_planner.py", "Custom Product Pages"),
+        ("event_planner.py", "In-App Events"),
     ]
 
     for module_file, module_name in modules:
@@ -183,7 +185,7 @@ cp -r app-store-optimization /path/to/project/.claude/skills/
 Verify installation:
 ```bash
 ls ~/.claude/skills/app-store-optimization/
-# Should show: SKILL.md, 8 Python modules, sample files
+# Should show: SKILL.md, 10 Python modules, sample files
 ```
 
 ### Do I need any API keys?
