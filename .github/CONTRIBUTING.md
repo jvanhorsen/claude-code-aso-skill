@@ -39,6 +39,7 @@ Branches are automatically created with this format:
 - `feature-{issue-number}-{slug}` for enhancements
 - `fix-{issue-number}-{slug}` for bugs
 - `docs-{issue-number}-{slug}` for documentation
+- `refactor-{issue-number}-{slug}` for refactoring
 
 **Example:** `feature-42-trending-keywords-analysis`
 
@@ -155,13 +156,13 @@ python -m py_compile app-store-optimization/keyword_analyzer.py
 # Run module directly (if has __main__ block)
 python app-store-optimization/metadata_optimizer.py
 
-# Test with sample data
-python -c "from app-store-optimization.keyword_analyzer import analyze_keyword; print(analyze_keyword('fitness app'))"
+# Test iTunes API integration
+python app-store-optimization/lib/itunes_api.py
 ```
 
 ### Testing Checklist
 
-- [ ] Python 3.8+ compatibility
+- [ ] Python 3.8+ compatibility (CI tests 3.8–3.13)
 - [ ] No syntax errors
 - [ ] Character limits validated (if metadata changes)
 - [ ] Platform-specific logic correct
@@ -218,7 +219,7 @@ When you push to your working branch, a PR is automatically created to `dev`.
 ### 3. Required Approvals
 
 - **To dev:** 1 approval + all checks pass
-- **To main:** 1 approval + Claude agent check + all checks pass
+- **To main:** 1 approval + Claude agent check + all checks pass (PRs to main must originate from `dev`)
 
 ### 4. Merge Strategy
 
@@ -305,7 +306,7 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ## Code of Conduct
 
-Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md) (located in `.github/`).
 
 ---
 
